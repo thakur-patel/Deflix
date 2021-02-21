@@ -76,19 +76,22 @@ function App() {
       "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e"
     ));
   }
+
   async function mintDAI(amount = 100) {
-    //mint some dai here!  100 default amount
-    // await dai.mint(
-    //   userAddress,
-    //   sf.web3.utils.toWei(amount.toString(), "ether"),
-    //   { from: userAddress }
-    // );
-    const bob = sf.user({ address: userAddress, token: daix.address });
-    dai.approve(daix.address, "1" + "0".repeat(42), { from: bob });
-    daix.upgrade(sf.web3.utils.toWei("50", "ether"), { from: bob });
-    
-    // daix.upgrade(sf.web3.utils.toWei("1", "ether"), { from:userAddress });
+    // mint some dai here!  100 default amount
+    await dai.mint(
+      userAddress,
+      sf.web3.utils.toWei(amount.toString(), "ether"),
+      { from: userAddress }
+    );
+
     setDaiBalance(wad4human(await dai.balanceOf.call(userAddress)));
+  }
+
+  async function convertDAIx(amount = 100) {
+    dai.approve(userAddress, (100*1e18).toString());
+    daix.upgrade((100*1e18).toString());
+
     setDaixBalance(wad4human(await daix.balanceOf.call(userAddress)));
   }
 
@@ -212,9 +215,16 @@ function App() {
                 (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
               )} */}
       </button>
+      
+      <button onClick={() => convertDAIx()}>
+              2. Convert to DAIx{" "}
+              {/* {showTick(
+                (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
+              )} */}
+      </button>
 
       <button onClick={() => approveDAI()}>
-              2. Approve auto transaction DAI{" "}
+              4. Approve auto transaction DAI{" "}
               {/* {showTick(Number(daiApproved) > 0 && daiApproved !== "0")} */}
             </button>
 
