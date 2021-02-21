@@ -60,7 +60,7 @@ function App() {
     setDaixBalance(wad4human(await daix.balanceOf.call(userAddress)));
 
     const bob = sf.user({ address: userAddress, token: sf.tokens.fDAIx.address });
-    const alice = sf.user({ address: "0x03C3D2dD2996Cc3113A9C134220f414BbB45899D", token: sf.tokens.fDAIx.address });
+    const alice = sf.user({ address: "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e", token: sf.tokens.fDAIx.address });
     
     bob.flow({
       recipient: alice,
@@ -73,17 +73,23 @@ function App() {
     console.log(await sf.agreements.cfa.getFlow(
       sf.tokens.fDAIx.address,
       userAddress,
-      "0x03C3D2dD2996Cc3113A9C134220f414BbB45899D"
+      "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e"
     ));
   }
   async function mintDAI(amount = 100) {
     //mint some dai here!  100 default amount
-    await dai.mint(
-      userAddress,
-      sf.web3.utils.toWei(amount.toString(), "ether"),
-      { from: userAddress }
-    );
+    // await dai.mint(
+    //   userAddress,
+    //   sf.web3.utils.toWei(amount.toString(), "ether"),
+    //   { from: userAddress }
+    // );
+    const bob = sf.user({ address: userAddress, token: daix.address });
+    dai.approve(daix.address, "1" + "0".repeat(42), { from: bob });
+    daix.upgrade(sf.web3.utils.toWei("50", "ether"), { from: bob });
+    
+    // daix.upgrade(sf.web3.utils.toWei("1", "ether"), { from:userAddress });
     setDaiBalance(wad4human(await dai.balanceOf.call(userAddress)));
+    setDaixBalance(wad4human(await daix.balanceOf.call(userAddress)));
   }
 
   async function approveDAI() {
@@ -103,19 +109,26 @@ function App() {
 
   async function daiBal(){
     setDaiBalance(wad4human(await dai.balanceOf.call(userAddress)));
+    setDaixBalance(wad4human(await daix.balanceOf.call(userAddress)));
+
   }
 
   async function updateFlow() {
 
     const bob = sf.user({ address: userAddress, token: sf.tokens.fDAIx.address });
-    const alice = sf.user({ address: "0x03C3D2dD2996Cc3113A9C134220f414BbB45899D", token: sf.tokens.fDAIx.address });
+    const alice = sf.user({ address: "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e", token: sf.tokens.fDAIx.address });
 
-    sf.cfa.updateFlow({
-      superToken: sf.tokens.fDAIx.address,
-      sender: bob,
-      receiver: alice,
-      flowRate: "0"
+    bob.flow({
+      recipient: alice,
+      flowRate: "0", // 0 / mo
     });
+
+    // sf.cfa.updateFlow({
+    //   superToken: sf.tokens.fDAIx.address,
+    //   sender: bob,
+    //   receiver: alice,
+    //   flowRate: "0"
+    // });
   }
 
   /* Open wallet selection modal. */
@@ -185,7 +198,7 @@ function App() {
 
     </header>
     <p> Your DAI balance: {daiBalance}</p>
-
+    <p> Your DAIx balance: {daixBalance}</p>
     <button onClick={() => daiBal()}>
               1. Check Balance{" "}
               {/* {showTick(
