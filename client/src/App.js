@@ -76,6 +76,34 @@ function App() {
       "0x03C3D2dD2996Cc3113A9C134220f414BbB45899D"
     ));
   }
+  async function mintDAI(amount = 100) {
+    //mint some dai here!  100 default amount
+    await dai.mint(
+      userAddress,
+      sf.web3.utils.toWei(amount.toString(), "ether"),
+      { from: userAddress }
+    );
+    setDaiBalance(wad4human(await dai.balanceOf.call(userAddress)));
+  }
+
+  async function approveDAI() {
+    //approve unlimited please
+    await dai
+      .approve(
+        daix.address,
+        "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+        { from: userAddress }
+      )
+      .then(async i =>
+        setDAIapproved(
+          wad4human(await dai.allowance.call(userAddress, daix.address))
+        )
+      );
+  }
+
+  async function daiBal(){
+    setDaiBalance(wad4human(await dai.balanceOf.call(userAddress)));
+  }
 
   async function updateFlow() {
 
@@ -154,7 +182,29 @@ function App() {
         provider={provider}
         loadWeb3Modal={loadWeb3Modal}
       />
+
     </header>
+    <p> Your DAI balance: {daiBalance}</p>
+
+    <button onClick={() => daiBal()}>
+              1. Check Balance{" "}
+              {/* {showTick(
+                (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
+              )} */}
+      </button>
+
+    <button onClick={() => mintDAI()}>
+              2. Mint some DAI{" "}
+              {/* {showTick(
+                (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
+              )} */}
+      </button>
+
+      <button onClick={() => approveDAI()}>
+              2. Approve auto transaction DAI{" "}
+              {/* {showTick(Number(daiApproved) > 0 && daiApproved !== "0")} */}
+            </button>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
     <script src='test.js'></script>
     <video id ="123" crossOrigin="anonymous">
