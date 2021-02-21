@@ -1,5 +1,3 @@
-## React Node Video Streaming
-
 
 ## Setup and Start Node Server
 ``` bash
@@ -8,7 +6,7 @@ yarn install
 yarn dev
 ```
 
-## Setup and Start React Application
+## Setup and Start React Ethereum Application
 ``` bash
 cd client
 yarn install
