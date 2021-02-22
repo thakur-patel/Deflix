@@ -1,8 +1,22 @@
+/* 
+
+Portis Support
+// import Portis from '@portis/web3';
+// import Web3 from 'web3';
+
+// const portis = new Portis('ebb6737d-bd16-492e-8e9d-3f5b6b4237f1', 'goerli');
+// const web3 = new Web3(portis.provider);
+// For our code change Web3(newProvider) -> Web3(portis.provider)
+
+
+*/
+
 import React, { useCallback, useEffect, useState } from "react";
 import { Web3Provider } from "@ethersproject/providers";
 import Web3 from "web3";
 import { web3Modal, logoutOfWeb3Modal } from "./utils/web3Modal";
 import Portis from '@portis/web3';
+import dethABI from './contracts/deth';
 
 import {
   Route,
@@ -17,16 +31,13 @@ const TruffleContract = require("@truffle/contract");
 const { wad4human } = require("@decentral.ee/web3-helpers");
 const SuperfluidSDK = require("@superfluid-finance/js-sdk");
 
-// import Portis from '@portis/web3';
-// import Web3 from 'web3';
 
-// const portis = new Portis('ebb6737d-bd16-492e-8e9d-3f5b6b4237f1', 'goerli');
-// const web3 = new Web3(portis.provider);
-// For our code change Web3(newProvider) -> Web3(portis.provider)
 
 let sf;
 let dai;
 let daix;
+let dethContract; //contract object see loadContract()
+let contractAddress = "0x67EfD9E42e2002c46235c447911f0179c9d8b0f8";
 
 const ZERO_ADDRESS = "0x"+"0".repeat(40);
 
@@ -73,7 +84,7 @@ function App() {
       // checkWinner();
     });
 
-  const portis = new Portis('ebb6737d-bd16-492e-8e9d-3f5b6b4237f1', 'goerli');
+  const portis = new Portis('ebb6737d-bd16-492e-8e9d-3f5b6b4237f1', 'maticMumbai'); //change for matic
 
     sf = new SuperfluidSDK.Framework({
       web3: new Web3(newProvider),
@@ -104,8 +115,16 @@ function App() {
       }
       // here you do all the data retrieval: please pull all the current players in the lottery and push them using addPlayer({address, netFlow})
     }, [loadWeb3Modal]);
+  
+  function loadContract(){
+    dethContract = dethContract || new sf.web3.eth.Contract(dethABI.abi, contractAddress);
+    return dethContract
+  }
 
-
+  async function testContract() {
+    const productCount2 = await loadContract().methods.speak().call();
+    console.log(productCount2);
+  }
 
   async function createFlow() {
 
@@ -238,6 +257,13 @@ function App() {
               4. Approve auto transaction DAI{" "}
               {/* {showTick(Number(daiApproved) > 0 && daiApproved !== "0")} */}
             </button>
+
+      <button onClick={() => testContract()}>
+              5. Check Matic contract{" "}
+              {/* {showTick(
+                (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
+              )} */}
+      </button>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
     <script src='test.js'></script>
