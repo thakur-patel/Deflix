@@ -1,101 +1,139 @@
-// import React, { Component } from 'react';
-// import Header from './Header';
-// import Footer from './Footer';
-// import {
-//   Body,
-//   Button,
-//   // Header,
-//   BoxContainer,
-//   Box,
-//   ShrinkBox,
-//   Center,
-//   Span,
-//   Div100,
-// } from "./components";
-// import { Web3Provider } from "@ethersproject/providers";
-// import Web3 from "web3";
-// import { web3Modal, logoutOfWeb3Modal } from "./utils/web3Modal";
+import { Web3Provider } from '@ethersproject/providers';
+import Web3 from "web3";
+import dethABI from './contracts/deth';
+// import Portis from '@portis/web3';
+import { web3Modal, logoutOfWeb3Modal } from "./utils/web3Modal";
+import React, { useCallback, useEffect, useState, Component} from "react";
 
-// const TruffleContract = require("@truffle/contract");
-// const { wad4human } = require("@decentral.ee/web3-helpers");
-// const SuperfluidSDK = require("@superfluid-finance/js-sdk");
+import vc from './Sample/1.mp4';
 
-// function WalletButton({ provider, userAddress, loadWeb3Modal }) {
-//   return (
-//     <Button
-//       onClick={() => {
-//         if (!provider) {
-//           loadWeb3Modal();
-//         } else {
-//           logoutOfWeb3Modal();
-//         }
-//       }}
-//     >
-//       {!provider ? (
-//         "Connect Wallet"
-//       ) : (
-//         <>
-//           <span>"Disconnect Wallet"</span>
-//           <br />
-//           <small>{userAddress.slice(0, 10) + "..."}</small>
-//         </>
-//       )}
-//     </Button>
-//   );
-// }
+const TruffleContract = require("@truffle/contract");
+const { wad4human } = require("@decentral.ee/web3-helpers");
+const SuperfluidSDK = require("@superfluid-finance/js-sdk");
 
-// export default class Player extends Component {
+let contractAddress = "0x67EfD9E42e2002c46235c447911f0179c9d8b0f8";
+let sf;
+let dai;
+let daix;
+let dethContract; 
+let newProvider;
+const ZERO_ADDRESS = "0x"+"0".repeat(40);
 
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       videoId: this.props.match.params.id,
-//       videoData: {}
-//     };
-//   }
-  
-//   async componentDidMount() {
-//     try {
-//       console.log('mounted -> connect wallet');
-//       const res = await fetch(`http://localhost:4000/video/${this.state.videoId}/data`);
-//       const data = await res.json();
-//       this.setState({ videoData: data });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
+function Player() {
+    const [userAddress, setUserAddress] = useState(ZERO_ADDRESS);
+    const [provider, setProvider] = useState();
 
-  
+     /* Open wallet selection modal. */
+  const loadWeb3Modal = useCallback(async () => {
+    const newProvider = await web3Modal.connect();
 
-//     const = playVideo = () => {
-//       console.log('yolo');
-//       var vid = document.getEleamentById('123');
-//       vid.play()
-//     };
+    newProvider.on("accountsChanged", accounts => {
+      console.log("accountsChanged", accounts);
+      setUserAddress(accounts[0]);
+      // checkWinner();
+    });
 
-//     const = pauseVideo = () => {
-//       console.log('3333');
-//       var vid = document.getElementById('123');
-//       vid.pause();
-//     };
+    sf = new SuperfluidSDK.Framework({
+      web3: new Web3(newProvider),
+      tokens: ["fDAI"]
+    });
+    await sf.initialize();
 
+    dai = await sf.contracts.TestToken.at(sf.tokens.fDAI.address);
+    daix = sf.tokens.fDAIx;
+
+    global.web3 = sf.web3;
+
+    const accounts = await sf.web3.eth.getAccounts();
+    setUserAddress(accounts[0]);
+
+    setProvider(new Web3Provider(newProvider));
+
+    setInterval(function() {
+      // return checkWinner();
+    }, 10000);
+    // checkWinner();
+  }, []);
+// 
+    /* If user has loaded a wallet before, load it automatically. */
+    useEffect(() => {
+      if (web3Modal.cachedProvider) {
+        loadWeb3Modal();
+      }
+      // here you do all the data retrieval: please pull all the current players in the lottery and push them using addPlayer({address, netFlow})
+    }, [loadWeb3Modal]);
+
+
+  async function createFlow() {
+
+    const bob = sf.user({ address: userAddress, token: sf.tokens.fDAIx.address });
+    const alice = sf.user({ address: "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e", token: sf.tokens.fDAIx.address });
     
-//   render() {
-//     return (
-//       <div className="App-header">
+    var vid = document.getElementById('123');
+    vid.play();
+    try{
+      bob.flow({
+          recipient: alice,
+          flowRate: "3858024691358", // 10 / mo
+         }).then( receipt => {
+            console.log("transaction completed, receipt: ", receipt);
+            //this triggers when the transaction is completed, so you can play video here
+            vid.play();
+         });
+    } catch (e) {
+       console.log("there was an error: ", e);
+    }
 
-//         <Header />
-//         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
-//         <script src='test.js'></script>
-//         <video id ="123" controls muted crossOrigin="anonymous">
-//           <source src={`http://localhost:4000/video/${this.state.videoId}`} type="video/mp4"></source>
-//           <track label="English" kind="captions" srcLang="en" src={`http://localhost:4000/video/${this.state.videoId}/caption`} default></track>
-//         </video>
-//         <button onClick={playVideo}>click</button>
-//         <button onClick={pauseVideo}>pause</button>
-//         <h1>{ this.state.videoData.name }</h1>
-//         <Footer />
-//       </div>
-//     )
-//   }
-// }
+    console.log(await bob.details());
+
+    // await sf.agreements.cfa.getFlow.call({superToken: sf.tokens.fDAIx.address, sender: bob, receiver: alice})).toString()
+    console.log(await sf.agreements.cfa.getFlow(
+      sf.tokens.fDAIx.address,
+      userAddress,
+      "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e"
+    ));
+  }
+
+  async function updateFlow() {
+
+    const bob = sf.user({ address: userAddress, token: sf.tokens.fDAIx.address });
+    const alice = sf.user({ address: "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e", token: sf.tokens.fDAIx.address });
+
+    bob.flow({
+      recipient: alice,
+      flowRate: "0", // 0 / mo
+    });
+  }
+
+  const playPause = () => {
+    console.log('yolo');
+    var vid = document.getElementById('123');
+    if (vid.paused) {
+    //   createFlow();
+      vid.play(); 
+    }
+    else {
+    //   const var2 = updateFlow();
+      vid.pause();
+    }
+  };
+
+
+    return(
+        <div>
+            <center>
+            <p>Video Player</p>
+            <hr></hr>
+            <video id ="123" width= "700" height = "300" crossOrigin="anonymous">
+                <source src={vc} type="video/mp4"></source>
+                
+            </video>
+            <br></br>
+            <hr></hr>
+            <button onClick={playPause}>PLAY / PAUSE</button>
+            </center>
+        </div>
+    );
+}
+
+export default Player;
