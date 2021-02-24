@@ -1,15 +1,21 @@
-import logo from './logo.svg';
+import React from 'react';
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+} from "react-router-dom";
+import Home from './Home';
+import Player from './Player';
 import './App.css';
-import Header from './header';
-import Player from './player';
-import React from "react";
 
 function App() {
   return (
-    <div>
-    <Header />
-    <Player />
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home}></Route>
+        <Route path="/player/:id" component={Player}></Route>
+      </Switch>
+    </Router>
   );
 }
 
