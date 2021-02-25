@@ -18,13 +18,13 @@ let newProvider;
 const ZERO_ADDRESS = "0x"+"0".repeat(40);
 
 function Header() {
-    const [daiBalance, setDaiBalance] = useState(0);
-    const [daixBalance, setDaixBalance] = useState(0);
-    const [userAddress, setUserAddress] = useState(ZERO_ADDRESS);
-    const [provider, setProvider] = useState();
-    const [daiApproved, setDAIapproved] = useState(0);
+  const [daiBalance, setDaiBalance] = useState(0);
+  const [daixBalance, setDaixBalance] = useState(0);
+  const [userAddress, setUserAddress] = useState(ZERO_ADDRESS);
+  const [provider, setProvider] = useState();
+  const [daiApproved, setDAIapproved] = useState(0);
 
-     /* Open wallet selection modal. */
+  /* Open wallet selection modal. */
   const loadWeb3Modal = useCallback(async () => {
     const newProvider = await web3Modal.connect();
 
