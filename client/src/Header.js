@@ -5,6 +5,7 @@ import dethABI from './contracts/deth';
 import { web3Modal, logoutOfWeb3Modal } from "./utils/web3Modal";
 import React, { useCallback, useEffect, useState, Component} from "react";
 import './Header.css'
+import dai_logo from './assets/dai.png'
 
 const TruffleContract = require("@truffle/contract");
 const { wad4human } = require("@decentral.ee/web3-helpers");
@@ -20,7 +21,7 @@ const ZERO_ADDRESS = "0x"+"0".repeat(40);
 
 function WalletButton({ provider, userAddress, loadWeb3Modal }) {
   return (
-    <button className="wallet"
+    <button className = "banner__button"
       onClick={() => {
         if (!provider) {
           loadWeb3Modal();
@@ -136,13 +137,16 @@ function Header() {
 
   return(
     <header>
+      <p> <img src={dai_logo} style={{width:20, height:20}}></img>DAI: {daiBalance} &nbsp;&nbsp;&nbsp; DAIx: {daixBalance}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
       <WalletButton
         userAddress={userAddress}
         provider={provider}
         loadWeb3Modal={loadWeb3Modal}
-      />
-      <br></br><br></br>
-      <div className = "banner__buttons">
+      /></p>
+      {/* <br></br><br></br> */}
+      {/* <div className = "banner__buttons"> */}
+      <br></br>
+      <div className = "banner__fadeBottom" >
       <button className = "banner__button" onClick={() => daiBal()}>
                 1. Check Balance{" "}
                 {/* {showTick(
@@ -176,10 +180,8 @@ function Header() {
                 )} */}
       </button>
       </div>
-      <br></br>
-      <p> Your DAI balance: {daiBalance}</p>
-      <p> Your DAIx balance: {daixBalance}</p>
-      <div className = "banner__fadeBottom" ></div>
+      {/* <br></br> */}
+      {/* <div className = "banner__fadeBottom" ></div> */}
     </header>
   );
 }
