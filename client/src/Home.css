@@ -10,6 +10,12 @@
   overflow: hidden;
   overflow-x: scroll;
   padding: 20px;
+  width: 100%;
+}
+
+.second{
+  color: black;
+  font-size: 16px;
 }
 
 .row__posters::-webkit-scrollbar {

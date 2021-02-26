@@ -18,6 +18,30 @@ let dethContract;
 let newProvider;
 const ZERO_ADDRESS = "0x"+"0".repeat(40);
 
+function WalletButton({ provider, userAddress, loadWeb3Modal }) {
+  return (
+    <button className="wallet"
+      onClick={() => {
+        if (!provider) {
+          loadWeb3Modal();
+        } else {
+          logoutOfWeb3Modal();
+        }
+      }}
+    >
+      {!provider ? (
+        "Connect Wallet"
+      ) : (
+        <>
+          <span>"Disconnect Wallet"</span>
+          <br />
+          <small>{userAddress.slice(0, 10) + "..."}</small>
+        </>
+      )}
+    </button>
+  );
+}
+
 function Header() {
   const [daiBalance, setDaiBalance] = useState(0);
   const [daixBalance, setDaixBalance] = useState(0);
@@ -39,6 +63,7 @@ function Header() {
       web3: new Web3(newProvider),
       tokens: ["fDAI"]
     });
+    
     await sf.initialize();
 
     dai = await sf.contracts.TestToken.at(sf.tokens.fDAI.address);
@@ -111,6 +136,11 @@ function Header() {
 
   return(
     <header>
+      <WalletButton
+        userAddress={userAddress}
+        provider={provider}
+        loadWeb3Modal={loadWeb3Modal}
+      />
       <br></br><br></br>
       <div className = "banner__buttons">
       <button className = "banner__button" onClick={() => daiBal()}>

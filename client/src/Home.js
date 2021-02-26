@@ -56,14 +56,14 @@ export default class Home extends Component {
         <Nav />
         <div className="container">
           <div className="row">
-            New Releases
+            <span className="second">New Releases</span>
             <div className = "row__posters">
               {this.state.videos.map(video =>
                 <div className="col-md-4" key={video.id}>
                 <Link to={`/player/${video.id}`}>
                   <div className="card border-0">
                     <img 
-                      src={`http://localhost:4000${video.poster}`} 
+                      src={`https://cdn.wallpapersafari.com/99/34/Tg0CIa.jpg`} 
                       alt={video.name} 
                       // onMouseOver = {() => onMouseOver(video)}
                       className = {"row__posterLarge"}
