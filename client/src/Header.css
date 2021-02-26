@@ -59,7 +59,7 @@
 
 .balButton {
   width: 380px;
-  position: fixed;
+  position: absolute;
   right: 260px;
   object-fit: contain;
   cursor: pointer;
@@ -91,7 +91,7 @@
 
 .nav__avtar {
   width: 225px;
-  position: fixed;
+  position:absolute;
   right: 10px;
   object-fit: contain;
   cursor: pointer;

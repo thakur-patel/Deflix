@@ -15,7 +15,7 @@
 
 .second{
   color: black;
-  font-size: 16px;
+  font-size: 24px;
 }
 
 .row__posters::-webkit-scrollbar {
@@ -24,7 +24,7 @@
 
 .row__poster {
   object-fit: contain;
-  width: 100%;
+  width: auto;
   max-height: 100px;
   margin-right: 10px;
   transition: transform 450ms;
@@ -42,3 +42,12 @@
 .row__posterLarge:hover {
   transform: scale(1.09);
 }
+
+.card-body{
+  text-align-last: center;
+}
+
+.songs{
+  padding: 10px;
+}
+

@@ -56,7 +56,7 @@ export default class Home extends Component {
         <Nav />
         <div className="container">
           <div className="row">
-            <span className="second">New Videos</span>
+            <span className="second">New Movies</span>
             <div className = "row__posters">
               {this.state.videos.map(video =>
                 <div className="col-md-4" key={video.id}>
@@ -83,14 +83,14 @@ export default class Home extends Component {
             <span className="second">New Songs</span>
             <div className = "row__posters">
               {this.state.videos.map(video =>
-                <div className="col-md-4" key={video.id}>
+                <div className="songs" key={video.id}>
                 <Link to={`/player/${video.id}`}>
                   <div className="card border-0">
                     <img 
                       src={`https://cdn.wallpapersafari.com/99/34/Tg0CIa.jpg`} 
                       alt={video.name} 
                       // onMouseOver = {() => onMouseOver(video)}
-                      className = {"row__posterLarge"}
+                      className = {"row__poster"}
                     />
                     <div className="card-body">
                       <p>{video.name}</p>
@@ -106,7 +106,7 @@ export default class Home extends Component {
           </div>
 
           <div className="row">
-            <span className="second">New Paintings</span>
+            <span className="second">Gameplay</span>
             <div className = "row__posters">
               {this.state.videos.map(video =>
                 <div className="col-md-4" key={video.id}>

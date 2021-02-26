@@ -20,30 +20,6 @@ let dethContract;
 let newProvider;
 const ZERO_ADDRESS = "0x"+"0".repeat(40);
 
-// function WalletButton({ provider, userAddress, loadWeb3Modal }) {
-//   return (
-//     <button className = "nav__avtar"
-//       onClick={() => {
-//         if (!provider) {
-//           loadWeb3Modal();
-//         } else {
-//           logoutOfWeb3Modal();
-//         }
-//       }}
-//     >
-//       {!provider ? (
-//         "Connect Wallet"
-//       ) : (
-//         <>
-//           <span>"Disconnect Wallet"</span>
-//           <br />
-//           <small>{userAddress.slice(0, 10) + "..."}</small>
-//         </>
-//       )}
-//     </button>
-//   );
-// }
-
 function Header() {
   const [daiBalance, setDaiBalance] = useState(0);
   const [daixBalance, setDaixBalance] = useState(0);
@@ -54,12 +30,6 @@ function Header() {
   /* Open wallet selection modal. */
   const loadWeb3Modal = useCallback(async () => {
     const newProvider = await web3Modal.connect();
-
-    newProvider.on("accountsChanged", accounts => {
-      console.log("accountsChanged", accounts);
-      setUserAddress(accounts[0]);
-      // checkWinner();
-    });
 
     sf = new SuperfluidSDK.Framework({
       web3: new Web3(newProvider),
@@ -78,18 +48,13 @@ function Header() {
 
     setProvider(new Web3Provider(newProvider));
 
-    setInterval(function() {
-      // return checkWinner();
-    }, 10000);
-    // checkWinner();
   }, []);
-// 
+
     /* If user has loaded a wallet before, load it automatically. */
     useEffect(() => {
       if (web3Modal.cachedProvider) {
         loadWeb3Modal();
       }
-      // here you do all the data retrieval: please pull all the current players in the lottery and push them using addPlayer({address, netFlow})
     }, [loadWeb3Modal]);
 
     async function mintDAI(amount = 100) {
@@ -109,7 +74,6 @@ function Header() {
       }
     
       async function approveDAI() {
-        //approve unlimited please
         await dai
           .approve(
             daix.address,
@@ -154,7 +118,6 @@ function Header() {
               )
           }
       </button>
-            {/* <img src={dai_logo} style={{width:20, height:20}}></img>DAI: {daiBalance} &nbsp;&nbsp;&nbsp; DAIx: {daixBalance}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    */}
       <button
           className = "nav__avtar" 
           onClick = {() => ({ provider, userAddress, loadWeb3Modal }) => 
@@ -176,42 +139,27 @@ function Header() {
           )}
       </button>
       </p>
-      {/* <br></br><br></br> */}
-      {/* <div className = "banner__buttons"> */}
       <br></br><br />
       <div className = "banner__fadeBottom" >
       <button className = "banner__button" onClick={() => mintDAI()}>
                  Mint some DAI{" "}
-                {/* {showTick(
-                  (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
-                )} */}
       </button>
         
       <button className = "banner__button" onClick={() => convertDAIx()}>
                  Convert to DAIx{" "}
-                {/* {showTick(
-                  (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
-                )} */}
       </button>
 
       <button className = "banner__button" onClick={() => approveDAI()}>
                  Approve auto transaction DAI{" "}
-                {/* {showTick(Number(daiApproved) > 0 && daiApproved !== "0")} */}
       </button>
 
       <button className = "banner__button" onClick={() => testContract()}>
                  Check Matic contract{" "}
-                {/* {showTick(
-                  (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
-                )} */}
       </button>
 
       <a href='/license'>
       <button className = "banner__button">
                  License Dashboard{" "}
-                {/* {showTick(
-                  (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
-                )} */}
       </button>
       </a>
       </div>
