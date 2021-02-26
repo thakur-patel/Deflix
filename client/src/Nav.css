@@ -22,10 +22,3 @@
   width: 80px;
   object-fit: contain;
 }
-
-.nav__avtar {
-  width: 30px;
-  position: fixed;
-  right: 20px;
-  object-fit: contain;
-}

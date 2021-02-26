@@ -58,9 +58,9 @@
 }
 
 .balButton {
-  width: 350px;
+  width: 380px;
   position: fixed;
-  right: 270px;
+  right: 260px;
   object-fit: contain;
   cursor: pointer;
   color: #fff;
