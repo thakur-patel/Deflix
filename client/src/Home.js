@@ -56,7 +56,7 @@ export default class Home extends Component {
         <Nav />
         <div className="container">
           <div className="row">
-            <span className="second">New Releases</span>
+            <span className="second">New Videos</span>
             <div className = "row__posters">
               {this.state.videos.map(video =>
                 <div className="col-md-4" key={video.id}>
@@ -77,8 +77,58 @@ export default class Home extends Component {
                 {/* {trailerUrl && <YouTube videoId = {trailerUrl} opts = {opts}/> } */}
               </div>
               )}
+            </div>
+
+          <div className="row">
+            <span className="second">New Songs</span>
+            <div className = "row__posters">
+              {this.state.videos.map(video =>
+                <div className="col-md-4" key={video.id}>
+                <Link to={`/player/${video.id}`}>
+                  <div className="card border-0">
+                    <img 
+                      src={`https://cdn.wallpapersafari.com/99/34/Tg0CIa.jpg`} 
+                      alt={video.name} 
+                      // onMouseOver = {() => onMouseOver(video)}
+                      className = {"row__posterLarge"}
+                    />
+                    <div className="card-body">
+                      <p>{video.name}</p>
+                      <p>{video.duration}</p>
+                    </div>
+                  </div>
+                </Link>
+                {/* {trailerUrl && <YouTube videoId = {trailerUrl} opts = {opts}/> } */}
+              </div>
+              )}
+              </div>
+            </div>
           </div>
-          </div>
+
+          <div className="row">
+            <span className="second">New Paintings</span>
+            <div className = "row__posters">
+              {this.state.videos.map(video =>
+                <div className="col-md-4" key={video.id}>
+                <Link to={`/player/${video.id}`}>
+                  <div className="card border-0">
+                    <img 
+                      src={`https://cdn.wallpapersafari.com/99/34/Tg0CIa.jpg`} 
+                      alt={video.name} 
+                      // onMouseOver = {() => onMouseOver(video)}
+                      className = {"row__posterLarge"}
+                    />
+                    <div className="card-body">
+                      <p>{video.name}</p>
+                      <p>{video.duration}</p>
+                    </div>
+                  </div>
+                </Link>
+                {/* {trailerUrl && <YouTube videoId = {trailerUrl} opts = {opts}/> } */}
+              </div>
+              )}
+            </div>
+            </div>
         </div>
         <Footer />
       </div>
