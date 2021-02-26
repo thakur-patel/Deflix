@@ -60,7 +60,7 @@
 .balButton {
   width: 350px;
   position: fixed;
-  right: 290px;
+  right: 270px;
   object-fit: contain;
   cursor: pointer;
   color: #fff;
@@ -83,10 +83,16 @@
   font-style:oblique;
 }
 
+.balButton:hover {
+  color: #000;
+  background-color: #e6e6e6;
+  transition: all 0.2s;
+}
+
 .nav__avtar {
-  width: 500px;
+  width: 225px;
   position: fixed;
-  right: 20px;
+  right: 10px;
   object-fit: contain;
   cursor: pointer;
   color: #fff;

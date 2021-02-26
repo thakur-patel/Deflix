@@ -12,6 +12,7 @@ const { wad4human } = require("@decentral.ee/web3-helpers");
 const SuperfluidSDK = require("@superfluid-finance/js-sdk");
 
 let contractAddress = "0x67EfD9E42e2002c46235c447911f0179c9d8b0f8";
+let balButton = 0;
 let sf;
 let dai;
 let daix;
@@ -19,29 +20,29 @@ let dethContract;
 let newProvider;
 const ZERO_ADDRESS = "0x"+"0".repeat(40);
 
-function WalletButton({ provider, userAddress, loadWeb3Modal }) {
-  return (
-    <button className = "banner__button"
-      onClick={() => {
-        if (!provider) {
-          loadWeb3Modal();
-        } else {
-          logoutOfWeb3Modal();
-        }
-      }}
-    >
-      {!provider ? (
-        "Connect Wallet"
-      ) : (
-        <>
-          <span>"Disconnect Wallet"</span>
-          <br />
-          <small>{userAddress.slice(0, 10) + "..."}</small>
-        </>
-      )}
-    </button>
-  );
-}
+// function WalletButton({ provider, userAddress, loadWeb3Modal }) {
+//   return (
+//     <button className = "nav__avtar"
+//       onClick={() => {
+//         if (!provider) {
+//           loadWeb3Modal();
+//         } else {
+//           logoutOfWeb3Modal();
+//         }
+//       }}
+//     >
+//       {!provider ? (
+//         "Connect Wallet"
+//       ) : (
+//         <>
+//           <span>"Disconnect Wallet"</span>
+//           <br />
+//           <small>{userAddress.slice(0, 10) + "..."}</small>
+//         </>
+//       )}
+//     </button>
+//   );
+// }
 
 function Header() {
   const [daiBalance, setDaiBalance] = useState(0);
@@ -137,23 +138,48 @@ function Header() {
 
   return(
     <header>
-      <p> <img src={dai_logo} style={{width:20, height:20}}></img>DAI: {daiBalance} &nbsp;&nbsp;&nbsp; DAIx: {daixBalance}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
-      <WalletButton
-        userAddress={userAddress}
-        provider={provider}
-        loadWeb3Modal={loadWeb3Modal}
-      /></p>
+      <p> 
+      <button
+          className= 'balButton'
+          onClick = {() => daiBal(balButton)}
+      >
+          {
+              (balButton%2 == 1) ? ("Check Balance") : (
+                  <>
+                      <span><img src={dai_logo} style={{width:20, height:20}}></img>DAI: {daiBalance}</span> &nbsp;&nbsp;&nbsp;
+                      <span><img src={dai_logo} style={{width:20, height:20}}></img>DAIx: {daixBalance}</span>
+                      <br />
+                      <span className= 'balButton__text'>Click for Updated Balance</span>
+                  </>
+              )
+          }
+      </button>
+            {/* <img src={dai_logo} style={{width:20, height:20}}></img>DAI: {daiBalance} &nbsp;&nbsp;&nbsp; DAIx: {daixBalance}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    */}
+      <button
+          className = "nav__avtar" 
+          onClick = {() => ({ provider, userAddress, loadWeb3Modal }) => 
+          {
+              if (!provider) {
+                  loadWeb3Modal();
+              } else {
+                  logoutOfWeb3Modal();
+              }
+          }}>
+          {!provider ? (
+          "Connect Wallet"
+          ) : (
+          <>
+              <span>"Disconnect Wallet"</span>
+              <br />
+              <small>{userAddress.slice(0, 10) + "..."}</small>
+          </>
+          )}
+      </button>
+      </p>
       {/* <br></br><br></br> */}
       {/* <div className = "banner__buttons"> */}
-      <br></br>
+      <br></br><br />
       <div className = "banner__fadeBottom" >
-      <button className = "banner__button" onClick={() => daiBal()}>
-                 Check Balance{" "}
-                {/* {showTick(
-                  (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
-                )} */}
-      </button>
-
       <button className = "banner__button" onClick={() => mintDAI()}>
                  Mint some DAI{" "}
                 {/* {showTick(
