@@ -56,3 +56,55 @@
     #111
   );
 }
+
+.balButton {
+  width: 350px;
+  position: fixed;
+  right: 290px;
+  object-fit: contain;
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  border-radius: 8px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: rgba(51, 51, 51, 0.5);
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+
+.balButton__text {
+  font-size: 0.8rem;
+  font-weight: 400;
+  font-style:oblique;
+}
+
+.nav__avtar {
+  width: 500px;
+  position: fixed;
+  right: 20px;
+  object-fit: contain;
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  border-radius: 8px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: rgba(51, 51, 51, 0.5);
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+
+.nav__avtar:hover {
+  color: #000;
+  background-color: #e6e6e6;
+  transition: all 0.2s;
+}

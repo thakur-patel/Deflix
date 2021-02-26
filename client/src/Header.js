@@ -148,37 +148,46 @@ function Header() {
       <br></br>
       <div className = "banner__fadeBottom" >
       <button className = "banner__button" onClick={() => daiBal()}>
-                1. Check Balance{" "}
+                 Check Balance{" "}
                 {/* {showTick(
                   (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
                 )} */}
       </button>
 
       <button className = "banner__button" onClick={() => mintDAI()}>
-                2. Mint some DAI{" "}
+                 Mint some DAI{" "}
                 {/* {showTick(
                   (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
                 )} */}
       </button>
         
       <button className = "banner__button" onClick={() => convertDAIx()}>
-                2. Convert to DAIx{" "}
+                 Convert to DAIx{" "}
                 {/* {showTick(
                   (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
                 )} */}
       </button>
 
       <button className = "banner__button" onClick={() => approveDAI()}>
-                4. Approve auto transaction DAI{" "}
+                 Approve auto transaction DAI{" "}
                 {/* {showTick(Number(daiApproved) > 0 && daiApproved !== "0")} */}
       </button>
 
       <button className = "banner__button" onClick={() => testContract()}>
-                5. Check Matic contract{" "}
+                 Check Matic contract{" "}
                 {/* {showTick(
                   (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
                 )} */}
       </button>
+
+      <a href='/license'>
+      <button className = "banner__button">
+                 License Dashboard{" "}
+                {/* {showTick(
+                  (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
+                )} */}
+      </button>
+      </a>
       </div>
       {/* <br></br> */}
       {/* <div className = "banner__fadeBottom" ></div> */}
