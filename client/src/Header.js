@@ -146,6 +146,7 @@ function Header() {
                 )} */}
       </button>
       </div>
+      <br></br>
       <p> Your DAI balance: {daiBalance}</p>
       <p> Your DAIx balance: {daixBalance}</p>
       <div className = "banner__fadeBottom" ></div>

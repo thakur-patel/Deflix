@@ -3,6 +3,7 @@
   font-weight: bold;
   font-size: 1.08rem;
   color: white;
+  text-decoration-color: tomato;
 }
 .row__posters {
   display: flex;
