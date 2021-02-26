@@ -6,6 +6,7 @@ import dethABI from './contracts/deth';
 // import Portis from '@portis/web3';
 import { web3Modal, logoutOfWeb3Modal } from "./utils/web3Modal";
 import React, { useCallback, useEffect, useState, Component} from "react";
+import Nav from './Nav';
 
 const TruffleContract = require("@truffle/contract");
 const { wad4human } = require("@decentral.ee/web3-helpers");
@@ -158,6 +159,7 @@ export default class Player extends Component {
     return (
       <div className="App-header">
         <Header />
+        <Nav />
         <Helper 
           variable1={this.state.videoId}
         />

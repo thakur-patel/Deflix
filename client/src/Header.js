@@ -4,6 +4,7 @@ import dethABI from './contracts/deth';
 // import Portis from '@portis/web3';
 import { web3Modal, logoutOfWeb3Modal } from "./utils/web3Modal";
 import React, { useCallback, useEffect, useState, Component} from "react";
+import './Header.css'
 
 const TruffleContract = require("@truffle/contract");
 const { wad4human } = require("@decentral.ee/web3-helpers");
@@ -108,45 +109,48 @@ function Header() {
         console.log(productCount2);
       }
 
-    return(
-        <header>
-      <h1> DEFLILX</h1>
-    <p> Your DAI balance: {daiBalance}</p>
-    <p> Your DAIx balance: {daixBalance}</p>
-    <button onClick={() => daiBal()}>
-              1. Check Balance{" "}
-              {/* {showTick(
-                (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
-              )} */}
+  return(
+    <header>
+      <br></br><br></br>
+      <div className = "banner__buttons">
+      <button className = "banner__button" onClick={() => daiBal()}>
+                1. Check Balance{" "}
+                {/* {showTick(
+                  (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
+                )} */}
       </button>
 
-    <button onClick={() => mintDAI()}>
-              2. Mint some DAI{" "}
-              {/* {showTick(
-                (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
-              )} */}
+      <button className = "banner__button" onClick={() => mintDAI()}>
+                2. Mint some DAI{" "}
+                {/* {showTick(
+                  (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
+                )} */}
       </button>
-      
-      <button onClick={() => convertDAIx()}>
-              2. Convert to DAIx{" "}
-              {/* {showTick(
-                (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
-              )} */}
+        
+      <button className = "banner__button" onClick={() => convertDAIx()}>
+                2. Convert to DAIx{" "}
+                {/* {showTick(
+                  (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
+                )} */}
       </button>
 
-      <button onClick={() => approveDAI()}>
-              4. Approve auto transaction DAI{" "}
-              {/* {showTick(Number(daiApproved) > 0 && daiApproved !== "0")} */}
-            </button>
-
-      <button onClick={() => testContract()}>
-              5. Check Matic contract{" "}
-              {/* {showTick(
-                (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
-              )} */}
+      <button className = "banner__button" onClick={() => approveDAI()}>
+                4. Approve auto transaction DAI{" "}
+                {/* {showTick(Number(daiApproved) > 0 && daiApproved !== "0")} */}
       </button>
-        </header>
-    );
+
+      <button className = "banner__button" onClick={() => testContract()}>
+                5. Check Matic contract{" "}
+                {/* {showTick(
+                  (daiBalance >= 2 && daiBalance !== "0") || daixBalance > 2
+                )} */}
+      </button>
+      </div>
+      <p> Your DAI balance: {daiBalance}</p>
+      <p> Your DAIx balance: {daixBalance}</p>
+      <div className = "banner__fadeBottom" ></div>
+    </header>
+  );
 }
 
 export default Header;

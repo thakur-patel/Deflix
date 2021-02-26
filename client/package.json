@@ -23,10 +23,12 @@
     "eslint-plugin-flowtype": "^5.2.0",
     "graphql": "^15.5.0",
     "ipfs-http-client": "^49.0.2",
+    "movie-trailer": "^2.1.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "4.0.2",
+    "react-youtube": "^7.13.1",
     "styled-components": "^5.2.1",
     "web3modal": "^1.9.3"
   },
