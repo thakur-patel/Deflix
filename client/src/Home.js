@@ -51,8 +51,9 @@ export default class Home extends Component {
                     <video
                       crossOrigin = 'anonymous'
                       allow="autoplay"
+                      loop
                       poster={`http://localhost:4000/video/${video.id}/poster`}
-                      muted="muted"
+                      // muted="muted"
                       onMouseOver={event => event.target.play()}
                       onMouseOut={event => event.target.load()}
                       src={`http://localhost:4000/trailer/${video.id}`}  >

@@ -8,20 +8,20 @@ const videos = [
   {
     id: 0,
     poster: '/video/0/poster',
-    duration: '3 mins',
-    name: 'Sample 1'
+    duration: '2 mins',
+    name: 'James Bond'
   },
   {
     id: 1,
     poster: '/video/1/poster',
-    duration: '4 mins',
-    name: 'Sample 2'
+    duration: '22 mins',
+    name: 'Naruto'
   },
   {
     id: 2,
     poster: '/video/2/poster',
-    duration: '2 mins',
-    name: 'Sample 3'
+    duration: '10 mins',
+    name: 'Joker'
   },
 ];
 
@@ -84,7 +84,7 @@ app.get('/trailer/:id', function(req, res) {
 });
 
 app.get('/video/:id', function(req, res) {
-  const path = `assets/${req.params.id}.mp4`;
+  const path = `assets/movies/${req.params.id}.mp4`;
   const stat = fs.statSync(path);
   const fileSize = stat.size;
   const range = req.headers.range;
