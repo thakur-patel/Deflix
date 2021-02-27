@@ -34,27 +34,27 @@ function Helper({ variable1 }) {
   const [provider, setProvider] = useState();
 
    /* Open wallet selection modal. */
-const loadWeb3Modal = useCallback(async () => {
-  const newProvider = await web3Modal.connect();
+  const loadWeb3Modal = useCallback(async () => {
+    const newProvider = await web3Modal.connect();
 
-  sf = new SuperfluidSDK.Framework({
-    web3: new Web3(newProvider),
-    tokens: ["fDAI"]
-  });
-  await sf.initialize();
+    sf = new SuperfluidSDK.Framework({
+      web3: new Web3(newProvider),
+      tokens: ["fDAI"]
+    });
+    await sf.initialize();
 
-  dai = await sf.contracts.TestToken.at(sf.tokens.fDAI.address);
-  daix = sf.tokens.fDAIx;
+    dai = await sf.contracts.TestToken.at(sf.tokens.fDAI.address);
+    daix = sf.tokens.fDAIx;
 
-  global.web3 = sf.web3;
+    global.web3 = sf.web3;
 
-  const accounts = await sf.web3.eth.getAccounts();
-  setUserAddress(accounts[0]);
+    const accounts = await sf.web3.eth.getAccounts();
+    setUserAddress(accounts[0]);
 
-  setProvider(new Web3Provider(newProvider));
+    setProvider(new Web3Provider(newProvider));
 
-}, []);
-// 
+  }, []);
+
   /* If user has loaded a wallet before, load it automatically. */
   useEffect(() => {
     if (web3Modal.cachedProvider) {
@@ -64,58 +64,58 @@ const loadWeb3Modal = useCallback(async () => {
   }, [loadWeb3Modal]);
 
 
-async function createFlow() {
+  async function createFlow() {
 
-  const bob = sf.user({ address: userAddress, token: sf.tokens.fDAIx.address });
-  const alice = sf.user({ address: "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e", token: sf.tokens.fDAIx.address });
-  
-  var vid = document.getElementById('123');
-  try{
+    const bob = sf.user({ address: userAddress, token: sf.tokens.fDAIx.address });
+    const alice = sf.user({ address: "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e", token: sf.tokens.fDAIx.address });
+    
+    var vid = document.getElementById('123');
+    try{
+      bob.flow({
+          recipient: alice,
+          flowRate: "3858024691358", // 10 / mo
+        }).then( receipt => {
+            console.log("transaction completed, receipt: ", receipt);
+            //this triggers when the transaction is completed, so you can play video here
+            vid.play();
+        });
+    } catch (e) {
+      console.log("there was an error: ", e);
+    }
+
+    console.log(await bob.details());
+
+    // await sf.agreements.cfa.getFlow.call({superToken: sf.tokens.fDAIx.address, sender: bob, receiver: alice})).toString()
+    console.log(await sf.agreements.cfa.getFlow(
+      sf.tokens.fDAIx.address,
+      userAddress,
+      "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e"
+    ));
+  }
+
+  async function updateFlow() {
+
+    const bob = sf.user({ address: userAddress, token: sf.tokens.fDAIx.address });
+    const alice = sf.user({ address: "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e", token: sf.tokens.fDAIx.address });
+
     bob.flow({
-        recipient: alice,
-        flowRate: "3858024691358", // 10 / mo
-       }).then( receipt => {
-          console.log("transaction completed, receipt: ", receipt);
-          //this triggers when the transaction is completed, so you can play video here
-          vid.play();
-       });
-  } catch (e) {
-     console.log("there was an error: ", e);
+      recipient: alice,
+      flowRate: "0", // 0 / mo
+    });
   }
 
-  console.log(await bob.details());
-
-  // await sf.agreements.cfa.getFlow.call({superToken: sf.tokens.fDAIx.address, sender: bob, receiver: alice})).toString()
-  console.log(await sf.agreements.cfa.getFlow(
-    sf.tokens.fDAIx.address,
-    userAddress,
-    "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e"
-  ));
-}
-
-async function updateFlow() {
-
-  const bob = sf.user({ address: userAddress, token: sf.tokens.fDAIx.address });
-  const alice = sf.user({ address: "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e", token: sf.tokens.fDAIx.address });
-
-  bob.flow({
-    recipient: alice,
-    flowRate: "0", // 0 / mo
-  });
-}
-
-const playPause = () => {
-  console.log('yolo');
-  var vid = document.getElementById('123');
-  if (vid.paused) {
-    createFlow();
-    // vid.play();
-  }
-  else {
-    updateFlow();
-    vid.pause();
-  }
-};
+  const playPause = () => {
+    console.log('yolo');
+    var vid = document.getElementById('123');
+    if (vid.paused) {
+      createFlow();
+      // vid.play();
+    }
+    else {
+      updateFlow();
+      vid.pause();
+    }
+  };
 
 
   return(
@@ -129,7 +129,7 @@ const playPause = () => {
           </video>
           <br></br>
           <hr></hr>
-          <button onClick={playPause}>PLAY / PAUSE</button>
+          <button className="banner__button" onClick={playPause}>PLAY / PAUSE</button>
           </center>
       </div>
   );
