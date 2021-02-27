@@ -7,8 +7,6 @@ import './Home.css';
 import YouTube from 'react-youtube'
 import movieTrailer from 'movie-trailer'
 
-// const [trailerUrl, setTrailerUrl] = useState("");
-
 const opts = {
   height: "390",
   width: "100%",
@@ -16,19 +14,6 @@ const opts = {
       autoplay: 1,
   }
 }
-
-// const onMouseOver = (movie) => {
-//   if(trailerUrl){
-//       setTrailerUrl("");
-//   } else {
-//       movieTrailer(movie?.name || "")
-//       .then((url) => {
-//           const urlParams = new URLSearchParams(new URL(url).search);
-//           setTrailerUrl(urlParams.get('v'));
-//       })
-//       .catch(() => console.log('Temporary Unavailable'))
-//   }
-// }
 
 export default class Home extends Component {
 
@@ -54,6 +39,7 @@ export default class Home extends Component {
       <div className="App-header">
         <Header />
         <Nav />
+
         <div className="container">
           <div className="row">
             <span className="second">New Movies</span>
@@ -62,19 +48,21 @@ export default class Home extends Component {
                 <div className="col-md-4" key={video.id}>
                 <Link to={`/player/${video.id}`}>
                   <div className="card border-0">
-                    <img 
-                      src={`https://cdn.wallpapersafari.com/99/34/Tg0CIa.jpg`} 
-                      alt={video.name} 
-                      // onMouseOver = {() => onMouseOver(video)}
-                      className = {"row__posterLarge"}
-                    />
+                    <video
+                      crossOrigin = 'anonymous'
+                      allow="autoplay"
+                      poster={`http://localhost:4000/video/${video.id}/poster`}
+                      muted="muted"
+                      onMouseOver={event => event.target.play()}
+                      onMouseOut={event => event.target.load()}
+                      src={`http://localhost:4000/trailer/${video.id}`}  >
+                    </video>
                     <div className="card-body">
                       <p>{video.name}</p>
                       <p>{video.duration}</p>
                     </div>
                   </div>
                 </Link>
-                {/* {trailerUrl && <YouTube videoId = {trailerUrl} opts = {opts}/> } */}
               </div>
               )}
             </div>
