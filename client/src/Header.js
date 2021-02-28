@@ -1,7 +1,7 @@
 import { Web3Provider } from '@ethersproject/providers';
 import Web3 from "web3";
 import dethABI from './contracts/deth';
-// import Portis from '@portis/web3';
+import Portis from '@portis/web3';
 import { web3Modal, logoutOfWeb3Modal } from "./utils/web3Modal";
 import React, { useCallback, useEffect, useState, Component} from "react";
 import './Header.css'
@@ -27,12 +27,15 @@ function Header() {
   const [provider, setProvider] = useState();
   const [daiApproved, setDAIapproved] = useState(0);
 
+  
+
   /* Open wallet selection modal. */
   const loadWeb3Modal = useCallback(async () => {
-    const newProvider = await web3Modal.connect();
+    const portis = new Portis('5efb0b6c-7dd3-4518-9e04-6fd41cfc0e0d', 'maticMumbai');
+    // const newProvider = await web3Modal.connect();
 
     sf = new SuperfluidSDK.Framework({
-      web3: new Web3(newProvider),
+      web3: new Web3(portis.provider),
       tokens: ["fDAI"]
     });
     
@@ -46,7 +49,7 @@ function Header() {
     const accounts = await sf.web3.eth.getAccounts();
     setUserAddress(accounts[0]);
 
-    setProvider(new Web3Provider(newProvider));
+    // setProvider(new Web3Provider(portis.provider));
 
   }, []);
 

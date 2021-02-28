@@ -12,7 +12,7 @@ const ZERO_ADDRESS = "0x"+"0".repeat(40);
 let web3;
 
 function Dashboard(){
-  const portis = new Portis('ebb6737d-bd16-492e-8e9d-3f5b6b4237f1', 'maticMumbai');
+  const portis = new Portis('5efb0b6c-7dd3-4518-9e04-6fd41cfc0e0d', 'maticMumbai');
   const [streamingRate, setStreamingRate] = useState(0);
 
   const loadWeb3Modal = useCallback(async () => {
@@ -49,7 +49,7 @@ function Dashboard(){
   // testContract();
   return(
     <p>
-    Current straming rate: {streamingRate}
+    Current straming rate: {streamingRate} 
     <button onClick={() => testContract()}>
           Refresh
   </button>

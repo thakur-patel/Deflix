@@ -3,7 +3,7 @@ import Footer from './Footer';
 import { Web3Provider } from '@ethersproject/providers';
 import Web3 from "web3";
 import dethABI from './contracts/deth';
-// import Portis from '@portis/web3';
+import Portis from '@portis/web3';
 import { web3Modal, logoutOfWeb3Modal } from "./utils/web3Modal";
 import React, { useCallback, useEffect, useState, Component} from "react";
 import Nav from './Nav';
@@ -21,15 +21,17 @@ let newProvider;
 const ZERO_ADDRESS = "0x"+"0".repeat(40);
 
 function Helper({ variable1 }) {
+  
   const [userAddress, setUserAddress] = useState(ZERO_ADDRESS);
   const [provider, setProvider] = useState();
 
    /* Open wallet selection modal. */
   const loadWeb3Modal = useCallback(async () => {
-    const newProvider = await web3Modal.connect();
+    // const newProvider = await web3Modal.connect();
+    const portis = new Portis('5efb0b6c-7dd3-4518-9e04-6fd41cfc0e0d', 'maticMumbai');
 
     sf = new SuperfluidSDK.Framework({
-      web3: new Web3(newProvider),
+      web3: new Web3(portis.provider),
       tokens: ["fDAI"]
     });
     await sf.initialize();
@@ -42,7 +44,7 @@ function Helper({ variable1 }) {
     const accounts = await sf.web3.eth.getAccounts();
     setUserAddress(accounts[0]);
 
-    setProvider(new Web3Provider(newProvider));
+    // setProvider(new Web3Provider(portis.provider));
 
   }, []);
 
@@ -60,7 +62,7 @@ function Helper({ variable1 }) {
     const bob = sf.user({ address: userAddress, token: sf.tokens.fDAIx.address });
     const alice = sf.user({ address: "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e", token: sf.tokens.fDAIx.address });
     
-    var vid = document.getElementById('123');
+    var vid = document.getElementById('player_movie');
     try{
       bob.flow({
           recipient: alice,
