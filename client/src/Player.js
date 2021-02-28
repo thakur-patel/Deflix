@@ -1,23 +1,17 @@
 import Header from './Header';
 import Footer from './Footer';
-import { Web3Provider } from '@ethersproject/providers';
 import Web3 from "web3";
-import dethABI from './contracts/deth';
 import Portis from '@portis/web3';
-import { web3Modal, logoutOfWeb3Modal } from "./utils/web3Modal";
-import React, { useCallback, useEffect, useState, Component} from "react";
+import { web3Modal } from "./utils/web3Modal";
+import React, { useCallback, useEffect, useState, Component } from "react";
 import Nav from './Nav';
 
-const TruffleContract = require("@truffle/contract");
-const { wad4human } = require("@decentral.ee/web3-helpers");
 const SuperfluidSDK = require("@superfluid-finance/js-sdk");
 
-let contractAddress = "0x67EfD9E42e2002c46235c447911f0179c9d8b0f8";
 let sf;
 let dai;
 let daix;
-let dethContract; 
-let newProvider;
+
 const ZERO_ADDRESS = "0x"+"0".repeat(40);
 
 
@@ -25,12 +19,11 @@ const ZERO_ADDRESS = "0x"+"0".repeat(40);
 function Helper({ variable1 }) {
   
   const [userAddress, setUserAddress] = useState(ZERO_ADDRESS);
-  const [provider, setProvider] = useState();
 
    /* Open wallet selection modal. */
   const loadWeb3Modal = useCallback(async () => {
-    // const newProvider = await web3Modal.connect();
-    const portis = new Portis('5efb0b6c-7dd3-4518-9e04-6fd41cfc0e0d', 'maticMumbai');
+
+    const portis = new Portis('870c1f6f-e839-4787-a56e-7ae968868e5e', 'maticMumbai');
 
     sf = new SuperfluidSDK.Framework({
       web3: new Web3(portis.provider),
@@ -46,8 +39,6 @@ function Helper({ variable1 }) {
     const accounts = await sf.web3.eth.getAccounts();
     setUserAddress(accounts[0]);
 
-    // setProvider(new Web3Provider(portis.provider));
-
   }, []);
 
   /* If user has loaded a wallet before, load it automatically. */
@@ -55,14 +46,13 @@ function Helper({ variable1 }) {
     if (web3Modal.cachedProvider) {
       loadWeb3Modal();
     }
-    // here you do all the data retrieval: please pull all the current players in the lottery and push them using addPlayer({address, netFlow})
   }, [loadWeb3Modal]);
 
 
   async function createFlow() {
 
     const bob = sf.user({ address: userAddress, token: sf.tokens.fDAIx.address });
-    const alice = sf.user({ address: "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e", token: sf.tokens.fDAIx.address });
+    const alice = sf.user({ address: "0x476E38c14CAe3a8A688C26f0912F0273E7E8eA8B", token: sf.tokens.fDAIx.address });
     
     var vid = document.getElementById('player_movie');
     try{
@@ -71,8 +61,6 @@ function Helper({ variable1 }) {
           flowRate: "3858024691358", // 10 / mo
         }).then( receipt => {
             console.log("transaction completed, receipt: ", receipt);
-            
-            //this triggers when the transaction is completed, so you can play video here
             vid.play();
         });
     } catch (e) {
@@ -81,18 +69,17 @@ function Helper({ variable1 }) {
 
     console.log(await bob.details());
 
-    // await sf.agreements.cfa.getFlow.call({superToken: sf.tokens.fDAIx.address, sender: bob, receiver: alice})).toString()
     console.log(await sf.agreements.cfa.getFlow(
       sf.tokens.fDAIx.address,
       userAddress,
-      "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e"
+      "0x476E38c14CAe3a8A688C26f0912F0273E7E8eA8B"
     ));
   }
 
   async function updateFlow() {
 
     const bob = sf.user({ address: userAddress, token: sf.tokens.fDAIx.address });
-    const alice = sf.user({ address: "0x5d29D15F5993B6563Bef1D13C5A45c636323AE2e", token: sf.tokens.fDAIx.address });
+    const alice = sf.user({ address: "0x476E38c14CAe3a8A688C26f0912F0273E7E8eA8B", token: sf.tokens.fDAIx.address });
 
     bob.flow({
       recipient: alice,

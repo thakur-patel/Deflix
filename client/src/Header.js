@@ -4,6 +4,7 @@ import { web3Modal } from "./utils/web3Modal";
 import React, { useCallback, useEffect, useState } from "react";
 import './Header.css';
 import dai_logo from './assets/dai.png';
+import daix_logo from './assets/daix.png';
 
 const { wad4human } = require("@decentral.ee/web3-helpers");
 const SuperfluidSDK = require("@superfluid-finance/js-sdk");
@@ -22,7 +23,7 @@ function Header() {
   const [userAddress, setUserAddress] = useState(ZERO_ADDRESS);
 
   const loadWeb3Modal = useCallback(async () => {
-    const portis = new Portis('5efb0b6c-7dd3-4518-9e04-6fd41cfc0e0d', 'maticMumbai');
+    const portis = new Portis('870c1f6f-e839-4787-a56e-7ae968868e5e', 'maticMumbai');
 
     sf = new SuperfluidSDK.Framework({
       web3: new Web3(portis.provider),
@@ -88,7 +89,7 @@ function Header() {
               (balButton%2 == 1) ? ("Check Balance") : (
                   <>
                       <span><img src={dai_logo} style={{width:20, height:20}}></img>DAI: {daiBalance}</span> &nbsp;&nbsp;&nbsp;
-                      <span><img src={dai_logo} style={{width:20, height:20}}></img>DAIx: {daixBalance}</span>
+                      <span><img src={daix_logo} style={{width:20, height:20}}></img>DAIx: {daixBalance}</span>
                       <br />
                       <span className= 'balButton__text'>Click for Updated Balance</span>
                   </>
