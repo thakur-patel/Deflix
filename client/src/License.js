@@ -39,7 +39,7 @@ function Dashboard(){
     return dethContract
   }
 
-  async function testContract() {
+  async function streamingR() {
     const productCount2 = await loadContract().methods.getStreamingRate().call();
     console.log('yolo__ss');
     console.log(productCount2);
@@ -49,9 +49,9 @@ function Dashboard(){
   // testContract();
   return(
     <p>
-    Current straming rate: {streamingRate} 
-    <button onClick={() => testContract()}>
-          Refresh
+    Current streaming rate: {streamingRate} &nbsp;&nbsp;
+    <button onClick={() => streamingR()}>
+          Refresh Rate
   </button>
   </p>
   );
