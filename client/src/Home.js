@@ -42,7 +42,7 @@ export default class Home extends Component {
                       crossOrigin = 'anonymous'
                       allow="autoplay"
                       loop
-                      poster={`http://localhost:4000/video/${video.id}/poster`}
+                      poster={`https://dether.herokuapp.com/video/${video.id}/poster`}
                       onMouseOver={event => event.target.play()}
                       onMouseOut={event => event.target.load()}
                       src={`https://dether.herokuapp.com/trailer/${video.id}`}  >

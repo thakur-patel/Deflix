@@ -20,6 +20,8 @@ let dethContract;
 let newProvider;
 const ZERO_ADDRESS = "0x"+"0".repeat(40);
 
+
+
 function Helper({ variable1 }) {
   
   const [userAddress, setUserAddress] = useState(ZERO_ADDRESS);
@@ -69,6 +71,7 @@ function Helper({ variable1 }) {
           flowRate: "3858024691358", // 10 / mo
         }).then( receipt => {
             console.log("transaction completed, receipt: ", receipt);
+            
             //this triggers when the transaction is completed, so you can play video here
             vid.play();
         });
