@@ -102,7 +102,7 @@ function Header() {
 
   return(
     <header>
-      <p> 
+        
       <button
           className= 'balButton'
           onClick = {() => daiBal(balButton)}
@@ -138,8 +138,8 @@ function Header() {
           </>
           )}
       </button>
-      </p>
-      <br></br><br />
+  
+      <br></br><br/>
       <div className = "banner__fadeBottom" >
       <button className = "banner__button" onClick={() => mintDAI()}>
                  Mint some DAI{" "}

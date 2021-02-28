@@ -20,15 +20,6 @@ let dethContract;
 let newProvider;
 const ZERO_ADDRESS = "0x"+"0".repeat(40);
 
-function Test({ variable1 }) {
-  console.log(variable1)
-  return (
-    <video id="123">
-    <source src={`http://localhost:4000/video/${variable1}`} type="video/mp4"></source>
-    <track label="English" kind="captions" srcLang="en" src={`http://localhost:4000/video/${variable1}/caption`} default></track>
-    </video>  )
-}
-
 function Helper({ variable1 }) {
   const [userAddress, setUserAddress] = useState(ZERO_ADDRESS);
   const [provider, setProvider] = useState();
@@ -105,11 +96,9 @@ function Helper({ variable1 }) {
   }
 
   const playPause = () => {
-    console.log('yolo');
-    var vid = document.getElementById('123');
+    var vid = document.getElementById('player_movie');
     if (vid.paused) {
       createFlow();
-      // vid.play();
     }
     else {
       updateFlow();
@@ -123,7 +112,7 @@ function Helper({ variable1 }) {
           <center>
           <p>Video Player</p>
           <hr></hr>
-          <video id="123">
+          <video id="player_movie">
             <source src={`http://localhost:4000/video/${variable1}`} type="video/mp4"></source>
             <track label="English" kind="captions" srcLang="en" src={`http://localhost:4000/video/${variable1}/caption`} default></track>
           </video>
