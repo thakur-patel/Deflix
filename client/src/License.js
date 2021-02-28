@@ -6,7 +6,7 @@ import Web3 from "web3";
 import { web3Modal} from "./utils/web3Modal";
 import Portis from '@portis/web3';
 import deth from './contracts/deth';
-import './License.css';
+import './styles/License.css';
 import dai_logo from './assets/dai.png';
 
 let dethContract; 

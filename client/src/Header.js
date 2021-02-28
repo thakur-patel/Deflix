@@ -2,7 +2,7 @@ import Web3 from "web3";
 import Portis from '@portis/web3';
 import { web3Modal } from "./utils/web3Modal";
 import React, { useCallback, useEffect, useState } from "react";
-import './Header.css';
+import './styles/Header.css';
 import dai_logo from './assets/dai.png';
 import daix_logo from './assets/daix.png';
 

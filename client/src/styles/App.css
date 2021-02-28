@@ -1,0 +1,90 @@
+.App-header {
+  min-height: 100vh;
+  color: white;
+}
+
+header, footer {
+  background-color: black;
+  text-align: center;
+  color: white;
+  padding: 10px 0;
+}
+
+header {
+  margin-bottom: 50px;
+  font-size: 28px;
+}
+
+.header:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+footer {
+  /* margin-top: 50px; */
+  font-size: 14px;
+}
+
+.card {
+  margin: 10px 0;
+}
+
+a, a:hover {
+  color: #282c34;
+  text-decoration: none;
+}
+
+video {
+  width: 100%;
+  height: 50vh;
+}
+
+img {
+  height: 200px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+p {
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.button {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}

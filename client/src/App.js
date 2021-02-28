@@ -3,7 +3,7 @@ import { Route,BrowserRouter as Router,Switch } from "react-router-dom";
 import Home from './Home';
 import Player from './Player';
 import License from './License';
-import './App.css';
+import './styles/App.css';
 
 function App() {
   return (

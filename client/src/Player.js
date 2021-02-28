@@ -14,8 +14,6 @@ let daix;
 
 const ZERO_ADDRESS = "0x"+"0".repeat(40);
 
-
-
 function Helper({ variable1 }) {
   
   const [userAddress, setUserAddress] = useState(ZERO_ADDRESS);

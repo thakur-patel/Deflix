@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import Nav from './Nav';
-import './Home.css';
+import './styles/Home.css';
 
 export default class Home extends Component {
 
