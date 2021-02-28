@@ -25,3 +25,5 @@ cd client
 yarn install
 yarn start
 ```
+
+## App is live on deflix.netlify.app
