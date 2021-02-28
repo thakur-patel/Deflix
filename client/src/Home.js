@@ -1,19 +1,9 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import Nav from './Nav';
 import './Home.css';
-import YouTube from 'react-youtube'
-import movieTrailer from 'movie-trailer'
-
-const opts = {
-  height: "390",
-  width: "100%",
-  playerVars: {
-      autoplay: 1,
-  }
-}
 
 export default class Home extends Component {
 
@@ -41,8 +31,8 @@ export default class Home extends Component {
         <Nav />
 
         <div className="container">
-          <div className="row">
-            <span className="second">New Movies</span>
+          <div className="row_final">
+            <span className="second-final">New Movies</span>
             <div className = "row__posters">
               {this.state.videos.map(video =>
                 <div className="col-md-4" key={video.id}>
@@ -53,12 +43,11 @@ export default class Home extends Component {
                       allow="autoplay"
                       loop
                       poster={`http://localhost:4000/video/${video.id}/poster`}
-                      // muted="muted"
                       onMouseOver={event => event.target.play()}
                       onMouseOut={event => event.target.load()}
                       src={`http://localhost:4000/trailer/${video.id}`}  >
                     </video>
-                    <div className="card-body">
+                    <div className="card-body-final">
                       <p>{video.name}</p>
                       <p>{video.duration}</p>
                     </div>
@@ -67,60 +56,60 @@ export default class Home extends Component {
               </div>
               )}
             </div>
+          </div>
+        </div>
 
-          <div className="row">
-            <span className="second">New Songs</span>
-            <div className = "row__posters">
-              {this.state.videos.map(video =>
+        <div className="soon">
+          <div className="soon2">
+            <div className="row">
+              <span className="second">Soon... <br></br><br></br>New Songs</span>
+              <div className = "row__posters">
+                {this.state.videos.map(video =>
                 <div className="songs" key={video.id}>
-                <Link to={`/player/${video.id}`}>
-                  <div className="card border-0">
-                    <img 
-                      src={`https://cdn.wallpapersafari.com/99/34/Tg0CIa.jpg`} 
-                      alt={video.name} 
-                      // onMouseOver = {() => onMouseOver(video)}
-                      className = {"row__poster"}
-                    />
-                    <div className="card-body">
-                      <p>{video.name}</p>
-                      <p>{video.duration}</p>
+                  <Link to={`/player/${video.id}`}>
+                    <div className="card border-0">
+                      <img 
+                        src={`https://fontmeme.com/permalink/210225/118decd2e18ca516ea15d77e75d1dcc3.png`} 
+                        alt={video.name} 
+                        className = {"row__poster"}
+                      />
+                      <div className="card-body">
+                        <p>Soon</p>
+                        <p>&infin;</p>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-                {/* {trailerUrl && <YouTube videoId = {trailerUrl} opts = {opts}/> } */}
+                  </Link>
+                </div>
+                )}
+                </div>
               </div>
-              )}
+            </div>
+
+            <div className="row">
+              <span className="second">Gameplay</span>
+              <div className = "row__posters">
+                {this.state.videos.map(video =>
+                  <div className="col-md-4" key={video.id}>
+                  <Link to={`/player/${video.id}`}>
+                    <div className="card border-0">
+                      <img 
+                        src={`https://fontmeme.com/permalink/210225/118decd2e18ca516ea15d77e75d1dcc3.png`}
+                        alt={video.name} 
+                        className = {"row__posterLarge"}
+                      />
+                      <div className="card-body">
+                        <p>Soon</p>
+                        <p>&infin;</p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+                )}
               </div>
             </div>
           </div>
-
-          <div className="row">
-            <span className="second">Gameplay</span>
-            <div className = "row__posters">
-              {this.state.videos.map(video =>
-                <div className="col-md-4" key={video.id}>
-                <Link to={`/player/${video.id}`}>
-                  <div className="card border-0">
-                    <img 
-                      src={`https://cdn.wallpapersafari.com/99/34/Tg0CIa.jpg`} 
-                      alt={video.name} 
-                      // onMouseOver = {() => onMouseOver(video)}
-                      className = {"row__posterLarge"}
-                    />
-                    <div className="card-body">
-                      <p>{video.name}</p>
-                      <p>{video.duration}</p>
-                    </div>
-                  </div>
-                </Link>
-                {/* {trailerUrl && <YouTube videoId = {trailerUrl} opts = {opts}/> } */}
-              </div>
-              )}
-            </div>
-            </div>
-        </div>
         <Footer />
-      </div>
+      </div> 
     )
   }
 }

@@ -2,6 +2,14 @@
   margin-left: 20px;
   font-weight: bold;
   font-size: 1.08rem;
+  color: black;
+  text-decoration-color: tomato;
+}
+
+.row_final {
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 1.08rem;
   color: white;
   text-decoration-color: tomato;
 }
@@ -12,8 +20,11 @@
   padding: 20px;
   width: 100%;
 }
-
-.second{
+.second {
+  color: white;
+  font-size: 24px;
+}
+.second-final{
   color: black;
   font-size: 24px;
 }
@@ -23,12 +34,14 @@
 }
 
 .row__poster {
-  object-fit: contain;
+  /* object-fit: contain; */
   width: auto;
   max-height: 100px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
   transition: transform 450ms;
-  border-radius: 1vw;
+  background-color:black;
+  /* border-radius: 1vw; */
+  color: white;
 }
 
 .row__poster:hover {
@@ -37,17 +50,36 @@
 
 .row__posterLarge {
   max-height: 250px;
+  background-color:black;
 }
 
 .row__posterLarge:hover {
   transform: scale(1.09);
 }
 
+.card-body-final{
+  text-align-last: center;
+  background-color:white;
+  /* color: white */
+}
+
 .card-body{
   text-align-last: center;
+  background-color: #101010 ;
+  color: white;
+
 }
+
 
 .songs{
   padding: 10px;
 }
 
+.soon {
+  background-color: #181818 ;
+  width:100%;
+  padding-left: 150px;
+  padding-right: 30px;
+  padding-top: 5px;
+
+}
