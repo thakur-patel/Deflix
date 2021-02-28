@@ -117,6 +117,8 @@ app.get('/video/:id', function(req, res) {
   }
 });
 
-app.listen(4000, function () {
+let PORT = process.env.PORT || 4000
+
+app.listen(PORT, function () {
   console.log('Listening on port 4000!')
 });

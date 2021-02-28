@@ -4,3 +4,5 @@ server/node_modules/
 .DS_Store 
 client/.DS_Store 
 server/.DS_Store 
+# Local Netlify folder
+.netlify

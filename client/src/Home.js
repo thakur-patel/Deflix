@@ -26,7 +26,7 @@ export default class Home extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch('http://localhost:4000/videos');
+      const response = await fetch('https://dether.herokuapp.com/videos');
       const data = await response.json();
       this.setState({ videos: [...data] });
     } catch (error) {
@@ -52,11 +52,11 @@ export default class Home extends Component {
                       crossOrigin = 'anonymous'
                       allow="autoplay"
                       loop
-                      poster={`http://localhost:4000/video/${video.id}/poster`}
+                      poster={`https://dether.herokuapp.com/video/${video.id}/poster`}
                       // muted="muted"
                       onMouseOver={event => event.target.play()}
                       onMouseOut={event => event.target.load()}
-                      src={`http://localhost:4000/trailer/${video.id}`}  >
+                      src={`https://dether.herokuapp.com/trailer/${video.id}`}  >
                     </video>
                     <div className="card-body">
                       <p>{video.name}</p>

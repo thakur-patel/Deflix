@@ -115,8 +115,8 @@ function Helper({ variable1 }) {
           <p>Video Player</p>
           <hr></hr>
           <video id="player_movie">
-            <source src={`http://localhost:4000/video/${variable1}`} type="video/mp4"></source>
-            <track label="English" kind="captions" srcLang="en" src={`http://localhost:4000/video/${variable1}/caption`} default></track>
+            <source src={`https://dether.herokuapp.com/video/${variable1}`} type="video/mp4"></source>
+            <track label="English" kind="captions" srcLang="en" src={`https://dether.herokuapp.com/video/${variable1}/caption`} default></track>
           </video>
           <br></br>
           <hr></hr>
@@ -138,7 +138,7 @@ export default class Player extends Component {
 
   async componentDidMount() {
     try {
-      const res = await fetch(`http://localhost:4000/video/${this.state.videoId}/data`);
+      const res = await fetch(`https://dether.herokuapp.com/video/${this.state.videoId}/data`);
       const data = await res.json();
       this.setState({ videoData: data });
     } catch (error) {
