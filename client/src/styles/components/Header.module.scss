@@ -1,0 +1,78 @@
+// Page hader
+.header {
+  padding: 40px 30px 30px 30px;
+  max-width: 1460px;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-between;
+  -webkit-box-pack: justify;
+  align-items: center;
+  position: sticky;
+  top: 0px;
+  z-index: 9999;
+
+  div {
+    width: auto;
+    flex: 1 1 40%;
+    display: flex;
+    align-items: center;
+  }
+
+  .header__logo {
+    justify-content: flex-start;
+
+    a {
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+
+  .header__menu {
+    justify-content: flex-end;
+
+    button,
+    a {
+      padding: 18px 25px;
+      font-weight: 500;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      margin: 0px 5px;
+    }
+
+    button:last-of-type,
+    a:last-of-type {
+      margin-right: 0px;
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    button:hover,
+    a:hover {
+      opacity: 0.75;
+    }
+  }
+}
+
+// Header menu buttons
+.header__menu_button_gray {
+  background-color: rgb(216, 216, 216);
+}
+
+.header__menu_button_black {
+  color: #fff;
+  background-color: #000;
+}
+
+// Responsiveness
+@media screen and (max-width: 500px) {
+  .header {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}

@@ -27,6 +27,8 @@ const videos = [
 
 app.use(cors());
 
+
+
 // endpoint to fetch all videos metadata
 app.get('/videos', function(req, res) {
   res.json(videos);

@@ -118,6 +118,12 @@ function Header() {
       </button>
       </a>
 
+      <a href='/market'>
+      <button className = "banner__button">
+                 MarketPlace{" "}
+      </button>
+      </a>
+
       </div>
     </header>
   );
