@@ -26,4 +26,4 @@ yarn install
 yarn start
 ```
 
-## App is live on deflix.netlify.app
+## App is live on [deflix.netlify.app](deflix.netlify.app)
