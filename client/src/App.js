@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import Home from "./Home";
-import Player from "./Player";
-import License from "./License";
+import Home from "./pages/Home";
+import Player from "./pages/Player";
+import License from "./pages/License";
 import "./styles/App.css";
 
 function App() {

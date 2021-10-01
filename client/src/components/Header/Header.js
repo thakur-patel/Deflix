@@ -1,10 +1,10 @@
 import Web3 from "web3";
 import Portis from "@portis/web3";
-import { web3Modal } from "./utils/web3Modal";
+import { web3Modal } from "utils/web3Modal";
 import React, { useCallback, useEffect, useState } from "react";
-import "./styles/Header.css";
-import dai_logo from "./assets/dai.png";
-import daix_logo from "./assets/daix.png";
+import "styles/Header.css";
+import dai_logo from "assets/dai.png";
+import daix_logo from "assets/daix.png";
 
 const { wad4human } = require("@decentral.ee/web3-helpers");
 const SuperfluidSDK = require("@superfluid-finance/js-sdk");
@@ -72,9 +72,7 @@ function Header() {
 				"115792089237316195423570985008687907853269984665640564039457584007913129639935",
 				{ from: userAddress }
 			)
-			.then(
-				async (i) => await dai.allowance.call(userAddress, daix.address)
-			);
+			.then(async (i) => await dai.allowance.call(userAddress, daix.address));
 	}
 
 	async function daiBal() {
@@ -90,22 +88,16 @@ function Header() {
 				) : (
 					<>
 						<span>
-							<img
-								src={dai_logo}
-								style={{ width: 20, height: 20 }}></img>
+							<img src={dai_logo} style={{ width: 20, height: 20 }}></img>
 							DAI: {daiBalance}
 						</span>{" "}
 						&nbsp;&nbsp;&nbsp;
 						<span>
-							<img
-								src={daix_logo}
-								style={{ width: 20, height: 20 }}></img>
+							<img src={daix_logo} style={{ width: 20, height: 20 }}></img>
 							DAIx: {daixBalance}
 						</span>
 						<br />
-						<span className='balButton__text'>
-							Click for Updated Balance
-						</span>
+						<span className='balButton__text'>Click for Updated Balance</span>
 					</>
 				)}
 			</button>
@@ -122,16 +114,12 @@ function Header() {
 					Approve &infin; DAI{" "}
 				</button>
 
-				<button
-					className='banner__button'
-					onClick={() => convertDAIx()}>
+				<button className='banner__button' onClick={() => convertDAIx()}>
 					Convert 100 DAI to DAIx{" "}
 				</button>
 
 				<a href='/license'>
-					<button className='banner__button'>
-						License Dashboard{" "}
-					</button>
+					<button className='banner__button'>License Dashboard </button>
 				</a>
 			</div>
 		</header>
