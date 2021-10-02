@@ -16,11 +16,14 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier"],
+  "plugins": ["react", "prettier", "tailwindcss"],
   "rules": {
     "no-console": "off",
     "react/prop-types": 0,
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "tailwindcss/classnames-order": "off",
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/no-contradicting-classname": "error"
   }
 }
 
