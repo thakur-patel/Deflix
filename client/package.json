@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
     "@craco/craco": "^6.3.0",
     "@decentral.ee/web3-helpers": "^0.4.0",
     "@ethersproject/contracts": "^5.0.11",
@@ -24,14 +26,18 @@
     "graphql": "^15.5.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-items-carousel": "^2.8.0",
+    "react-responsive-carousel": "^3.2.21",
     "react-router-dom": "^5.1.2",
     "react-scripts": "4.0.2",
     "styled-components": "^5.2.1",
     "web3modal": "^1.9.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/eslint-parser": "^7.15.7",
     "autoprefixer": "^9.8.7",
-    "eslint": "^7.20.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",

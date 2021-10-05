@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "es2021": true,
@@ -21,7 +22,7 @@
     "no-console": "off",
     "react/prop-types": 0,
     "no-unused-vars": "warn",
-    "tailwindcss/classnames-order": "off",
+    "tailwindcss/classnames-order": "warn",
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/no-contradicting-classname": "error"
   }

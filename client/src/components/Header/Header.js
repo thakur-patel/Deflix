@@ -6,10 +6,12 @@ import 'styles/Header.css';
 import dai_logo from 'assets/dai.png';
 import daix_logo from 'assets/daix.png';
 
+import Nav from '../Nav/Nav';
+import PrimaryButton from 'components/UI/Button/PrimaryButton';
+
 const { wad4human } = require('@decentral.ee/web3-helpers');
 const SuperfluidSDK = require('@superfluid-finance/js-sdk');
 
-let balButton = 0;
 let sf;
 let dai;
 let daix;
@@ -78,67 +80,62 @@ function Header() {
       );
   }
 
-  async function daiBal() {
-    setDaiBalance(wad4human(await dai.balanceOf.call(userAddress)));
-    setDaixBalance(wad4human(await daix.balanceOf.call(userAddress)));
+  async function daiBal(e) {
+    e.stopPropagation();
+    alert('clicked');
+    // setDaiBalance(wad4human(await dai.balanceOf.call(userAddress)));
+    // setDaixBalance(wad4human(await daix.balanceOf.call(userAddress)));
   }
 
   return (
     <header>
-      <button className="balButton" onClick={() => daiBal(balButton)}>
-        {balButton % 2 == 1 ? (
-          'Check Balance'
-        ) : (
-          <>
-            <span>
-              <img
-                src={dai_logo}
-                style={{ width: 20, height: 20 }}
-              ></img>
-              DAI: {daiBalance}
-            </span>{' '}
-            &nbsp;&nbsp;&nbsp;
-            <span>
-              <img
-                src={daix_logo}
-                style={{ width: 20, height: 20 }}
-              ></img>
-              DAIx: {daixBalance}
-            </span>
-            <br />
-            <span className="balButton__text">
-              Click for Updated Balance
-            </span>
-          </>
-        )}
-      </button>
-
-      <br></br>
+      <Nav />
+      <div
+        className="flex flex-col items-center mx-auto balButton"
+        onClick={daiBal}
+      >
+        <div className="flex gap-4 justify-center my-1 font-semibold cursor-pointer">
+          <span className="flex object-contain gap-1 items-center">
+            <img src={dai_logo} className="w-5 h-5" />
+            DAI: {daiBalance}
+          </span>
+          <span className="flex object-contain gap-1 items-center">
+            <img src={daix_logo} className="w-5 h-5" />
+            DAIx: {daixBalance}
+          </span>
+        </div>
+        <span className="balButton__text">
+          Click for Updated Balance
+        </span>
+      </div>
       <br />
 
       <div className="banner__fadeBottom">
-        <button className="banner__button" onClick={() => mintDAI()}>
-          Mint 100 DAI{' '}
-        </button>
+        <PrimaryButton
+          tailwindClass="banner__button"
+          onClick={() => mintDAI()}
+        >
+          Mint 100 DAI
+        </PrimaryButton>
 
-        <button
-          className="banner__button"
+        <PrimaryButton
+          tailwindClass="banner__button"
           onClick={() => approveDAI()}
         >
-          Approve &infin; DAI{' '}
-        </button>
+          Approve &infin; DAI
+        </PrimaryButton>
 
-        <button
-          className="banner__button"
+        <PrimaryButton
+          tailwindClass="banner__button"
           onClick={() => convertDAIx()}
         >
-          Convert 100 DAI to DAIx{' '}
-        </button>
+          Convert 100 DAI to DAIx
+        </PrimaryButton>
 
         <a href="/license">
-          <button className="banner__button">
-            License Dashboard{' '}
-          </button>
+          <PrimaryButton tailwindClass="banner__button">
+            License Dashboard
+          </PrimaryButton>
         </a>
       </div>
     </header>
