@@ -7,42 +7,42 @@ import MovieCard from '../MovieCard/MovieCard';
 // to be defined at App and passed through context.
 const movies = [
   {
-    title: 'Sangchi And The Legend of the Ten rings',
+    name: 'Sangchi And The Legend of the Ten rings',
     imgUrl:
       'https://m.media-amazon.com/images/M/MV5BODYzNjRiNmMtNzUxNy00ZDlkLTgyNzItZGJkZjdlZGZmNzc5XkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_FMjpg_UX500_.jpg',
     year: 2010,
     rating: 4.5,
   },
   {
-    title: 'Free Guy',
+    name: 'Free Guy',
     imgUrl:
       'https://m.media-amazon.com/images/M/MV5BOTY2NzFjODctOWUzMC00MGZhLTlhNjMtM2Y2ODBiNGY1ZWRiXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UY720_.jpg',
     year: 2011,
     rating: 4.5,
   },
   {
-    title: 'Candyman',
+    name: 'Candyman',
     imgUrl:
       'https://m.media-amazon.com/images/M/MV5BOWEzNDAxYmEtYWU0Zi00ZjZjLTkxY2QtMGY1MjY5ZjVhNDdjXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UY576_.jpg',
     year: 2012,
     rating: 4.5,
   },
   {
-    title: 'Venom: Let There Be Carnage',
+    name: 'Venom: Let There Be Carnage',
     imgUrl:
       'https://m.media-amazon.com/images/M/MV5BMzU3YTc1ZjMtZTAyOC00ZTI1LWE0MzItMTllN2M2YWI4MWZmXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_FMjpg_UY400_.jpg',
     year: 2013,
     rating: 4.5,
   },
   {
-    title: 'The Sucide Squad',
+    name: 'The Sucide Squad',
     imgUrl:
       'https://m.media-amazon.com/images/M/MV5BNGM3YzdlOWYtNjViZS00MTE2LWE1MWUtZmE2ZTcxZjcyMmU3XkEyXkFqcGdeQXVyODEyMTI1MjA@._V1_FMjpg_UY473_.jpg',
     year: 2014,
     rating: 4.5,
   },
   {
-    title: 'Cinderalla',
+    name: 'Cinderalla',
     imgUrl:
       'https://m.media-amazon.com/images/M/MV5BZTk3ZTEzNGUtZTcwYy00NmRmLWFhMGYtZjA4NWY1ZWI4MzMyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UY473_.jpg',
     year: 2015,
@@ -51,7 +51,6 @@ const movies = [
 ];
 
 function MyCarousel(props) {
-  const chevronWidth = props.chevronWidth || 30;
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [showChevron, setChevron] = useState(window.innerWidth);
@@ -112,16 +111,19 @@ function MyCarousel(props) {
       />
     </svg>
   );
+  let NumberOfCards = Math.min(props.items.length, 6);
+  if (windowWidth <= 640) {
+    NumberOfCards = 1;
+  } else if (windowWidth <= 900) {
+    NumberOfCards = 3;
+  }
   return (
     // <div style={{ padding: `0 ${chevronWidth}px` }}>
     <>
       <ItemsCarousel
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
-        numberOfCards={Math.min(
-          windowWidth <= 900 ? 4 : 6,
-          movies.length
-        )}
+        numberOfCards={NumberOfCards}
         gutter={10}
         rightChevron={rightChevron}
         leftChevron={leftChevron}
@@ -139,20 +141,20 @@ function MyCarousel(props) {
           }),
         }}
       >
-        {movies.map((movie) => {
+        {props.items.map((item) => {
           return (
             <div
-              key={movie.title}
+              key={item.props.id}
               onMouseEnter={() => setChevron(false)}
               onMouseLeave={() => setChevron(true)}
               className="w-full h-full"
             >
-              <MovieCard movie={movie} />
+              {/* <MovieCard movie={movie} /> */}
+              {item}
             </div>
           );
         })}
       </ItemsCarousel>
-      {window.innerWidth}
     </>
     // </div>
   );
