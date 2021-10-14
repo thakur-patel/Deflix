@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
-import MyCarousel from 'components/Carousel/MyCarousel';
+import Nav from 'components/Nav/Nav';
 
 function RootLayout({ children }) {
   return (
     <>
+      <Nav />
       <Header />
       {children}
       <Footer />

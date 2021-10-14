@@ -6,6 +6,9 @@ module.exports = {
       minHeight: {
         72: '18rem',
       },
+      colors: {
+        myblack: '#181818',
+      },
     },
   },
   variants: {

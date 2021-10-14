@@ -6,7 +6,6 @@ import 'styles/Header.css';
 import dai_logo from 'assets/dai.png';
 import daix_logo from 'assets/daix.png';
 
-import Nav from '../Nav/Nav';
 import PrimaryButton from 'components/UI/Button/PrimaryButton';
 
 const { wad4human } = require('@decentral.ee/web3-helpers');
@@ -89,9 +88,15 @@ function Header() {
 
   return (
     <header>
-      <Nav />
+      <a className="inline-block sm:absolute sm:left-0 px-3" href="/">
+        <img
+          className="object-contain w-32 h-16"
+          src="https://fontmeme.com/permalink/210225/118decd2e18ca516ea15d77e75d1dcc3.png"
+          alt="Deflix Logo"
+        />
+      </a>
       <div
-        className="flex flex-col items-center mx-auto balButton"
+        className="flex flex-col items-center mx-auto mt-3 balButton"
         onClick={daiBal}
       >
         <div className="flex gap-4 justify-center my-1 font-semibold cursor-pointer">

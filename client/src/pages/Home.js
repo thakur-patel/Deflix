@@ -8,57 +8,109 @@ import DisplayCard from 'components/DisplayCard/DisplayCard';
 
 const NewSongs = [
   {
-    name: 'Song1',
+    name: 'StarBoy',
     imgUrl:
-      'https://fontmeme.com/permalink/210225/118decd2e18ca516ea15d77e75d1dcc3.png',
+      'https://i.pinimg.com/originals/3a/f0/e5/3af0e55ea66ea69e35145fb108b4a636.jpg',
     duration: 2,
+    author: 'Weekend',
   },
   {
-    name: 'Song2',
+    name: 'Pain',
     imgUrl:
-      'https://fontmeme.com/permalink/210225/118decd2e18ca516ea15d77e75d1dcc3.png',
+      'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/artistic-album-cover-design-template-d12ef0296af80b58363dc0deef077ecc_screen.jpg?ts=1561488440',
     duration: 3,
+    author: 'Ryan Jones',
   },
   {
-    name: 'Song3',
+    name: 'Havana',
     imgUrl:
-      'https://fontmeme.com/permalink/210225/118decd2e18ca516ea15d77e75d1dcc3.png',
+      'https://i1.sndcdn.com/artworks-000277650419-hhso6q-t500x500.jpg',
     duration: 4,
+    author: 'Camila Cabello',
   },
   {
-    name: 'Song4',
+    name: 'Perfect',
     imgUrl:
-      'https://fontmeme.com/permalink/210225/118decd2e18ca516ea15d77e75d1dcc3.png',
+      'https://upload.wikimedia.org/wikipedia/en/8/80/Ed_Sheeran_Perfect_Single_cover.jpg',
     duration: 5,
+    author: 'Ed Sheeran',
+  },
+  {
+    name: 'Lonely',
+    imgUrl:
+      'https://images-na.ssl-images-amazon.com/images/I/51aq3xWheEL._AC_SX425_.jpg',
+    duration: 3,
+    author: 'Akon',
+  },
+  {
+    name: 'Give Me EveryThing',
+    imgUrl:
+      'https://e.snmc.io/i/1200/s/1f7d8f5fbbd0e1a3fa9160247f83637a/3666224',
+    duration: 4,
+    author: 'Pitbull',
+  },
+  {
+    name: 'What makes you beautiful',
+    imgUrl:
+      'https://images-na.ssl-images-amazon.com/images/I/61JPEqGHJcL._AC_SX466_.jpg',
+    duration: 3,
+    author: 'One Direction',
+  },
+  {
+    name: 'Follow your fire',
+    imgUrl:
+      'https://i.scdn.co/image/ab67616d0000b2732112db8aa9dabc6cdd9e14d0',
+    duration: 3,
+    author: 'Kodaline',
+  },
+  {
+    name: 'Hymn For The Weekend',
+    imgUrl:
+      'https://upload.wikimedia.org/wikipedia/en/3/3d/Coldplay_-_A_Head_Full_of_Dreams.png',
+    duration: 3,
+    author: 'Coldplay',
   },
 ];
 
 const Gameplay = [
   {
-    name: 'Gameplay1',
+    name: 'Valorant',
     imgUrl:
-      'https://fontmeme.com/permalink/210225/118decd2e18ca516ea15d77e75d1dcc3.png',
+      'https://cdna.artstation.com/p/assets/images/images/036/947/866/large/ismael-fofana-valorant-game-poster-design.jpg?1619051884&dl=1',
     duration: 2,
   },
   {
-    name: 'Gameplay2',
+    name: 'CS-GO',
     imgUrl:
-      'https://fontmeme.com/permalink/210225/118decd2e18ca516ea15d77e75d1dcc3.png',
+      'https://i.pinimg.com/originals/81/bb/27/81bb2759d8a548a1a05e3b1b0ad94ffc.jpg',
     duration: 3,
   },
   {
-    name: 'Gameplay3',
+    name: 'Assassins Creed - Valhalla ',
     imgUrl:
-      'https://fontmeme.com/permalink/210225/118decd2e18ca516ea15d77e75d1dcc3.png',
+      'https://upload.wikimedia.org/wikipedia/en/f/f8/ACValhalla.jpg',
     duration: 4,
   },
   {
-    name: 'Gameplay4',
+    name: 'BatMan - Arkham Origins',
     imgUrl:
-      'https://fontmeme.com/permalink/210225/118decd2e18ca516ea15d77e75d1dcc3.png',
+      'https://howlongtobeat.com/games/Batman-Arkham-Origins-Box-Art.jpg',
+    duration: 5,
+  },
+  {
+    name: 'SpiderMan',
+    imgUrl:
+      'https://terrigen-cdn-dev.marvel.com/content/prod/1x/marvsmposterbk_intdesign.jpg',
+    duration: 5,
+  },
+  {
+    name: 'Fortnite',
+    imgUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR11uOg-rHlCe50d0fDdTx6Gh33u59zJOIurRvIGjbzv66DcuxtPLq-crT90bLhqtxsauc&usqp=CAU',
     duration: 5,
   },
 ];
+// https://fontmeme.com/permalink/210225/118decd2e18ca516ea15d77e75d1dcc3.png
 export default class Home extends Component {
   constructor(props) {
     super(props);
