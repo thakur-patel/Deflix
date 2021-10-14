@@ -9,7 +9,7 @@ import { web3Modal } from '../utils/web3Modal';
 import Portis from '@portis/web3';
 import deth from '../contracts/deth';
 import RootLayout from '../layouts/RootLayout';
-import '../styles/License.css';
+
 import dai_logo from '../assets/dai.png';
 
 let dethContract;
@@ -116,12 +116,16 @@ function Dashboard() {
   };
 
   return (
-    <div className="container">
-      <h1>General Commands</h1>
-
-      <button className="balButton" onClick={() => streamingR()}>
-        {
-          <>
+    <div className="flex flex-col m-4">
+      <div className="flex flex-col gap-3 justify-center my-3">
+        <h1 className="text-3xl font-semibold underline">
+          General Commands
+        </h1>
+        <div className="flex flex-col sm:flex-row">
+          <button
+            className="mx-auto balButton"
+            onClick={() => streamingR()}
+          >
             <span>
               <img
                 src={dai_logo}
@@ -133,78 +137,110 @@ function Dashboard() {
             <span className="balButton__text">
               Click to update rate.
             </span>
-          </>
-        }
-      </button>
+          </button>
 
-      <button className="balButton" onClick={() => getLicenses()}>
-        {
-          <>
+          <button
+            className="mx-auto balButton"
+            onClick={() => getLicenses()}
+          >
             <span>Your Licenses: {licenses} </span> <br />
             <span className="balButton__text">
               Click to fetch your licenses.
             </span>
-          </>
-        }
-      </button>
+          </button>
+        </div>
 
-      <br></br>
-      <br></br>
-
-      <form className="LicenseForm" onSubmit={ownerSubmit}>
-        <label>
-          License Owner: {licenseOwner}&nbsp;&nbsp;
+        <form className="" onSubmit={ownerSubmit}>
+          <label className="block text-sm font-medium text-gray-700">
+            License Owner: {licenseOwner}&nbsp;&nbsp;
+          </label>
           <input
             type="number"
+            className="mt-1 w-full md:w-3/5 rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm"
             ref={nameEl}
             placeholder="License Id (eg: 0)"
           />
-        </label>
-        <input type="submit" name="Submit" />
-      </form>
 
-      <form className="LicenseForm" onSubmit={transLic}>
-        <label>
-          Transfer your License: {licenseOwner}&nbsp;&nbsp;
           <input
-            type="number"
-            ref={idEl}
-            placeholder="License Id (eg: 0)"
+            type="submit"
+            name="Submit"
+            className="inline-flex justify-center py-2 px-4 md:mr-0 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm focus:outline-none"
           />
+        </form>
+
+        <form
+          className="flex flex-col md:flex-row gap-4 p-4 rounded-md border-2 border-indigo-300 border-dashed"
+          onSubmit={transLic}
+        >
+          <div className="w-full md:w-1/2">
+            <label className="block text-sm font-medium text-gray-700">
+              Transfer your License: {licenseOwner}&nbsp;&nbsp;
+            </label>
+            <input
+              type="number"
+              className="mt-1 w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm"
+              ref={idEl}
+              placeholder="License Id (eg: 0)"
+            />
+          </div>
+          <div className="w-full md:w-1/2">
+            <label className="block text-sm font-medium text-gray-700">
+              Address to send
+            </label>
+            <input
+              type="text"
+              className="mt-1 w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm"
+              ref={toEl}
+              placeholder="Address (eg: 0x467ASd...)"
+            />
+          </div>
           <input
-            type="text"
-            ref={toEl}
-            placeholder="Address (eg: 0x467ASd...)"
+            type="submit"
+            name="Submit"
+            className="inline-flex justify-center self-end py-2 px-4 h-10 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm focus:outline-none"
           />
-        </label>
-        <input type="submit" name="Submit" />
-      </form>
+        </form>
+      </div>
 
       <hr></hr>
-      <h1>Admin only commands</h1>
-      <form className="LicenseForm" onSubmit={rateSubmit}>
-        <label>
-          Set Rate: {licenseOwner}&nbsp;&nbsp;
+      <div className="flex flex-col gap-3 justify-center my-3">
+        <h1 className="text-3xl font-semibold underline">
+          Admin only commands
+        </h1>
+        <form className="LicenseForm" onSubmit={rateSubmit}>
+          <label className="block text-sm font-medium text-gray-700">
+            Set Rate: {licenseOwner}&nbsp;&nbsp;
+          </label>
           <input
             type="number"
+            className="mt-1 w-full md:w-3/5 rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm"
             ref={rateEl}
             placeholder="Streaming rate (eg: 10/mo)"
           />
-        </label>
-        <input type="submit" name="Submit" />
-      </form>
+          <input
+            type="submit"
+            name="Submit"
+            className="inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm focus:outline-none"
+          />
+        </form>
 
-      <form className="LicenseForm" onSubmit={mintLic}>
-        <label>
-          Mint License: {}&nbsp;&nbsp;
+        <form className="LicenseForm" onSubmit={mintLic}>
+          <label className="block text-sm font-medium text-gray-700">
+            Mint License: {}&nbsp;&nbsp;
+          </label>
           <input
             type="text"
+            className="mt-1 w-full md:w-3/5 rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm"
             ref={toEl}
             placeholder="Streaming rate (eg: 10/mo)"
           />
-        </label>
-        <input type="submit" name="Submit" />
-      </form>
+          <input
+            type="submit"
+            name="Submit"
+            className="inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm focus:outline-none"
+          />
+        </form>
+      </div>
     </div>
   );
 }
@@ -212,11 +248,11 @@ function Dashboard() {
 export default class License extends Component {
   render() {
     return (
-      <div>
+      <>
         <RootLayout>
           <Dashboard />
         </RootLayout>
-      </div>
+      </>
     );
   }
 }

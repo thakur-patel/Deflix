@@ -13,7 +13,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      with: ['hover'],
+      width: ['hover'],
       height: ['hover'],
       transitionDelay: ['hover'],
       backgroundSize: ['hover'],
@@ -24,5 +24,5 @@ module.exports = {
       borderWidth: ['hover'],
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };

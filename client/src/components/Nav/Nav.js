@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import useOnClickOutside from 'hooks/useOnClickOutside';
+import PrimaryButton from 'components/UI/Button/PrimaryButton';
 
 function Nav(props) {
   const [isNavOpen, setNavOpen] = useState(false);
@@ -27,11 +28,11 @@ function Nav(props) {
       ref={navRef}
       className={clsx(
         { 'translate-y-32': showNavBar },
-        'fixed -top-32 z-50 w-full bg-myblack transition-all transform text-gray-200'
+        'fixed -top-32 z-50 w-full text-gray-200 transition-all transform bg-myblack'
       )}
     >
       <div className="flex flex-col md:flex-row md:justify-between md:items-center px-4 md:px-6 lg:px-8 mx-auto max-w-screen-xl">
-        <div className="flex flex-row justify-between items-center p-4">
+        <div className="flex flex-row justify-between items-center p-3">
           <a className="px-3" href="/">
             <img
               className="object-contain h-10"
@@ -66,33 +67,21 @@ function Nav(props) {
         <nav
           className={clsx(
             { flex: isNavOpen, hidden: !isNavOpen },
-            'md:flex flex-col md:flex-row flex-grow md:justify-end pb-4 md:pb-0'
+            'md:flex flex-col md:flex-row flex-grow lg:flex-grow-0 my-2 space-y-2 md:space-y-0 w-full lg:w-1/2'
           )}
         >
-          <a
-            className="py-2 px-4 mt-2 md:mt-0 text-sm font-semibold rounded-lg focus:outline-none text-gray-200 hover:text-white focus:text-white bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline"
-            href="#"
-          >
+          <PrimaryButton tailwindClass="banner__button">
             Blog
-          </a>
-          <a
-            className="py-2 px-4 mt-2 md:mt-0 text-sm font-semibold rounded-lg focus:outline-none text-gray-200 hover:text-white focus:text-white bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline"
-            href="#"
-          >
+          </PrimaryButton>
+          <PrimaryButton tailwindClass="banner__button">
             Portfolio
-          </a>
-          <a
-            className="py-2 px-4 mt-2 md:mt-0 text-sm font-semibold rounded-lg focus:outline-none text-gray-200 hover:text-white focus:text-white bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline"
-            href="#"
-          >
+          </PrimaryButton>
+          <PrimaryButton tailwindClass="banner__button">
             About
-          </a>
-          <a
-            className="py-2 px-4 mt-2 md:mt-0 text-sm font-semibold rounded-lg focus:outline-none text-gray-200 hover:text-white focus:text-white bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline"
-            href="#"
-          >
+          </PrimaryButton>
+          <PrimaryButton tailwindClass="banner__button">
             Contact
-          </a>
+          </PrimaryButton>
         </nav>
       </div>
     </div>
