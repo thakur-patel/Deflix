@@ -1,9 +1,5 @@
-.App-header {
-  min-height: 100vh;
-  color: white;
-}
-
-header, footer {
+header,
+footer {
   background-color: black;
   text-align: center;
   color: white;
@@ -29,7 +25,8 @@ footer {
   margin: 10px 0;
 }
 
-a, a:hover {
+a,
+a:hover {
   color: #282c34;
   text-decoration: none;
 }
@@ -54,7 +51,7 @@ p {
   border-radius: 4px;
   background-color: #f4511e;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   font-size: 28px;
   padding: 20px;

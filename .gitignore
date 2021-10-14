@@ -6,3 +6,5 @@ client/.DS_Store
 server/.DS_Store 
 # Local Netlify folder
 .netlify
+
+**/build	

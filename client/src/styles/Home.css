@@ -16,7 +16,6 @@
 .row__posters {
   display: flex;
   overflow: hidden;
-  overflow-x: scroll;
   padding: 20px;
   width: 100%;
 }
@@ -24,7 +23,7 @@
   color: white;
   font-size: 24px;
 }
-.second-final{
+.second-final {
   color: black;
   font-size: 24px;
 }
@@ -39,7 +38,7 @@
   max-height: 100px;
   /* margin-right: 10px; */
   transition: transform 450ms;
-  background-color:black;
+  background-color: black;
   /* border-radius: 1vw; */
   color: white;
 }
@@ -50,36 +49,30 @@
 
 .row__posterLarge {
   max-height: 250px;
-  background-color:black;
+  background-color: black;
 }
 
 .row__posterLarge:hover {
   transform: scale(1.09);
 }
 
-.card-body-final{
+.card-body-final {
   text-align-last: center;
-  background-color:white;
+  background-color: white;
   /* color: white */
 }
 
-.card-body{
+.card-body {
   text-align-last: center;
-  background-color: #101010 ;
+  background-color: #101010;
   color: white;
-
 }
 
-
-.songs{
+.songs {
   padding: 10px;
 }
 
 .soon {
-  background-color: #181818 ;
-  width:100%;
-  padding-left: 150px;
-  padding-right: 30px;
-  padding-top: 5px;
-
+  background-color: #181818;
+  width: 100%;
 }
