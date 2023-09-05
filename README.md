@@ -1,6 +1,12 @@
 
 # CrypTV (previously Deflix)
 
+This project was created in [ETHIndia's Etherpunk 2021](https://devfolio.co/submissions/deflix-7522)
+
+> **Prizes Won**:
+>1. Superfluid: _Winner_
+>2. Portis: _Winner_
+
 In this busy world, finding time is hard and corporations take advantage of this lack of time by charging you on a monthly basis. CrypTV provides a pay-as-you-watch functionality along with easy streaming license management using NFT derivative of the movies, which is linked to a media NFT share market. 
 
 For Consumers:
